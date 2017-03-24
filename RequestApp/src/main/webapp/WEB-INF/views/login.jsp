@@ -17,8 +17,8 @@
 			<div id="message">${message}</div>
 		</c:if>
 	    <fieldset id="inputs">
-	        <form:input id="username" name="username" path="username"/>   
-	        <form:input id="password" name="password" path="password"/>
+	        <form:input id="username" name="username" path="username" placeholder="Username"/>   
+	        <form:input id="password" name="password" path="password" placeholder="Password"/>
 	    </fieldset>
 	    <fieldset id="actions">
 	        <input type="submit" id="submit" value="Sign in">
