@@ -1,4 +1,4 @@
-package by.sancho.springmvctest;
+package by.iba.WelcomePage;
 
 import java.text.DateFormat;
 import java.util.Date;
@@ -32,8 +32,6 @@ public class HomeController {
 		String formattedDate = dateFormat.format(date);
 		
 		model.addAttribute("serverTime", formattedDate );
-		model.addAttribute("user", "sancho-pancho" );
-		
 		
 		return "home";
 	}
