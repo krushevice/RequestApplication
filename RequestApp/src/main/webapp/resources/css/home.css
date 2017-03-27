@@ -101,7 +101,7 @@ th
 }
 
 
-button
+.btn
 {		
     background-color: #ffb94b;
     background-image: -webkit-gradient(linear, left top, left bottom, from(#fddb6f), to(#ffb94b));
@@ -134,7 +134,7 @@ button
     color: #8f5a0a;
 }
 
-button:hover,button:focus
+.btn:hover,button:focus
 {		
     background-color: #fddb6f;
     background-image: -webkit-gradient(linear, left top, left bottom, from(#ffb94b), to(#fddb6f));
@@ -145,7 +145,7 @@ button:hover,button:focus
     background-image: linear-gradient(top, #ffb94b, #fddb6f);
 }	
 
-button:active
+.btn:active
 {		
     outline: none;
    
@@ -154,7 +154,7 @@ button:active
      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5) inset;		
 }
 
-button::-moz-focus-inner
+.btn::-moz-focus-inner
 {
   border: none;
 }

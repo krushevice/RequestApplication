@@ -8,9 +8,20 @@
   <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
   <title>home</title>
   <link href="<c:url value="/resources/css/home.css" />" rel="stylesheet">
+  
+  	<script type= "text/javascript">
+		function createRequest(){
+			location.href='/requestApp/createRequest';	
+		}
+		function viewRequests() {
+			location.href='/requestApp/viewRequests';
+		}
+	</script>
+  
+  
   </head>
  <body>
-  <form:form id="Choise" name="ChoiceBean" action="Choise" method="post" modelAttribute="ChoiseBean">
+  <form:form id="Choise">
    <table cols="4" align="center" width="50%" height="100"> 
     <tr>
      <th id="Greeting" colspan="2">
@@ -20,11 +31,14 @@
     <tr>
      <th colspan="2">
      Please, choose the action!
+     <%-- <a href="<c:url value="/createRequest" />"> sssss</a> --%>
      </th>
     </tr>
     <tr>
-     <td align="center"><button>Create</button></td>
-     <td align="center"><button>Read</button></td>
+     <td align="center">
+     	<input class="btn" type="button" id="create" onclick="createRequest();" value="Create">  </td>
+     <td align="center">
+     	<input class="btn" type="button" id="view" onclick="viewRequests();" value="Read">  </td>
     </tr>
    </table>
   </form:form>
