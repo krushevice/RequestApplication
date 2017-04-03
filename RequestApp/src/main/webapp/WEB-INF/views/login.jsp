@@ -8,10 +8,29 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 	<title>login</title>
 	<link href="<c:url value="/resources/css/login.css" />" rel="stylesheet">
+	<script type="text/javascript" src="resources/jquery/jquery-2.1.4.min.js"></script>
+	
+	<script type="text/javascript">
+		
+		function validate(){
+			if($("#username").val()==""){
+				alert("Username can't be empty!");
+				$("#username").focus();
+				return false;
+			}
+			if($("#password").val()==""){
+				alert("Password can't be empty!");
+				$("#password").focus(); 
+				return false;
+			}
+			
+		}
+		
+	</script>
 </head>
 <body>
 <!--name of the form must be the same as a parametr in @ModelAttribute,  name of inputs the same as class fields -->
- 	<form:form id="login" name="loginBean" action="login" method="post" modelAttribute="loginBean">
+ 	<form:form id="login" name="loginBean" action="login" method="post" modelAttribute="loginBean" onsubmit="return validate()">
 	    <h1>Log In</h1>
 	    <c:if test="${not empty message}">
 			<div id="message">${message}</div>
