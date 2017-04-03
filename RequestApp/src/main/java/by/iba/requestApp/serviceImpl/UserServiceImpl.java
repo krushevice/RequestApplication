@@ -22,4 +22,9 @@ public class UserServiceImpl implements UserService {
 		return userDao.isValidUser(username, password);
 	}
 
+	@Override
+	public void insertUser(String username, String password) throws SQLException {
+		userDao.insertUser(username, password);	
+	}
+
 }
