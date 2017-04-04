@@ -54,5 +54,21 @@ public class LoginController{
 
 		return model;
 	}
+	@RequestMapping(value="/register**",method=RequestMethod.POST)
+	public ModelAndView register(@ModelAttribute("loginBean")LoginBean loginBean){
+System.out.println("123");
+		ModelAndView model= null;
+		try{
+				loginDelegate.insertUser(loginBean.getUsername(), loginBean.getPassword());
+
+				model = new ModelAndView("login");
+				model.addObject("message", "Registration complites successfully!");
+
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+
+		return model;
+	}
 }
 

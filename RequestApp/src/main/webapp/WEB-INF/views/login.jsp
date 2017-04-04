@@ -9,6 +9,7 @@
 	<title>login</title>
 	<link href="<c:url value="/resources/css/login.css" />" rel="stylesheet">
 	<script type="text/javascript" src="resources/jquery/jquery-2.1.4.min.js"></script>
+	<script type="text/javascript" src="resources/jquery/jquery-ui.js"></script>
 	
 	<script type="text/javascript">
 		

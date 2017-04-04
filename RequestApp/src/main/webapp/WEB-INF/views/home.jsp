@@ -14,6 +14,7 @@
 			location.href='/requestApp/createRequest';	
 		}
 		function viewRequests() {
+		//parent.openLayerDialog("");
 			location.href='/requestApp/viewRequests';
 		}
 	</script>

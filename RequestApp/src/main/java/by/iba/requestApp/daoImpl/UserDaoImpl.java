@@ -42,11 +42,12 @@ public class UserDaoImpl implements UserDao {
 	@Override
 	public void insertUser(String username, String password) throws SQLException {
 
-		String query = "insert into user values(?, ?)";
+		String query = "insert into user values(?,?,?)";
 		PreparedStatement pstmt = dataSource.getConnection().prepareStatement(query);
-		pstmt.setString(1, username); 
-		pstmt.setString(2, password);
-		ResultSet resultSet = pstmt.executeQuery();
+		pstmt.setString(1, "2"); 
+		pstmt.setString(2, username); 
+		pstmt.setString(3, password);
+		pstmt.execute();
 		
 	}
 
