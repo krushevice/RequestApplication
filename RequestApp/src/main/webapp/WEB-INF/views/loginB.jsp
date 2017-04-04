@@ -7,10 +7,14 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 	<title>login</title>
-	<link href="<c:url value="/resources/css/loginB.css" />" rel="stylesheet">
-	<script type="text/javascript" src="resources/jquery/jquery-2.1.4.min.js"></script>
-	<script type="text/javascript" src="resources/js/loginB.js"></script>
 	
+	<link href="<c:url value="resources/bootstrap/css/bootstrap.min.css"/>" rel="stylesheet">
+	<link href="<c:url value="/resources/css/loginB.css" />" rel="stylesheet">
+		
+	
+	<script type="text/javascript" src="<c:url value="resources/jquery/jquery-2.1.4.min.js"/>"></script> 
+	<script type="text/javascript" src="<c:url value="resources/bootstrap/js/bootstrap.min.js"/>"></script> 
+	<script type="text/javascript" src="<c:url value="resources/js/loginB.js"/>"></script>
 	
 </head>
 
@@ -33,17 +37,21 @@
 					<div class="panel-body">
 						<div class="row">
 							<div class="col-lg-12">
-								<form id="login-form" action="http://phpoll.com/login/process" method="post" role="form" style="display: block;">
+								<form id="login-form" action="login" method="post" style="display: block;">
+									<c:if test="${not empty message}">
+										<div id="message1" class="message1" style="color: red;">${message}</div>
+									</c:if>
+									
 									<div class="form-group">
-										<input type="text" name="username" id="username" tabindex="1" class="form-control" placeholder="Username" value="">
+										<input type="text" name="username" id="username" tabindex="1" class="form-control" placeholder="Username">
 									</div>
 									<div class="form-group">
 										<input type="password" name="password" id="password" tabindex="2" class="form-control" placeholder="Password">
 									</div>
-									<div class="form-group text-center">
+									<!-- <div class="form-group text-center">
 										<input type="checkbox" tabindex="3" class="" name="remember" id="remember">
 										<label for="remember"> Remember Me</label>
-									</div>
+									</div> -->
 									<div class="form-group">
 										<div class="row">
 											<div class="col-sm-6 col-sm-offset-3">
@@ -51,7 +59,7 @@
 											</div>
 										</div>
 									</div>
-									<div class="form-group">
+									<!-- <div class="form-group">
 										<div class="row">
 											<div class="col-lg-12">
 												<div class="text-center">
@@ -59,14 +67,14 @@
 												</div>
 											</div>
 										</div>
-									</div>
+									</div> -->
 								</form>
-								<form id="register-form" action="http://phpoll.com/register/process" method="post" role="form" style="display: none;">
+								<form id="register-form" action="register" method="post" style="display: none;">
+									<c:if test="${not empty message}">
+										<div id="message1" class="message1" style="color: red;">${message}</div>
+									</c:if>
 									<div class="form-group">
-										<input type="text" name="username" id="username" tabindex="1" class="form-control" placeholder="Username" value="">
-									</div>
-									<div class="form-group">
-										<input type="email" name="email" id="email" tabindex="1" class="form-control" placeholder="Email Address" value="">
+										<input type="text" name="username" id="username" tabindex="1" class="form-control" placeholder="Username">
 									</div>
 									<div class="form-group">
 										<input type="password" name="password" id="password" tabindex="2" class="form-control" placeholder="Password">

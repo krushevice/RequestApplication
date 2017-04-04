@@ -11,7 +11,7 @@ import by.iba.requestApp.viewBean.LoginBean;
 public class HomeController {
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public ModelAndView displayHome() {
-		ModelAndView model = new ModelAndView("login");
+		ModelAndView model = new ModelAndView("loginB");
 		LoginBean loginBean = new LoginBean();
 		model.addObject("loginBean", loginBean);
 		return model;

@@ -28,7 +28,7 @@ public class LoginController{
 	
 	@RequestMapping(value="/login",method=RequestMethod.GET)
 	public ModelAndView displayLogin(){
-		ModelAndView model = new ModelAndView("login");
+		ModelAndView model = new ModelAndView("loginB");
 		LoginBean loginBean = new LoginBean();
 		model.addObject("loginBean", loginBean);
 		return model;
@@ -44,7 +44,7 @@ public class LoginController{
 				model = new ModelAndView("home");
 				model.addObject("username", loginBean.getUsername());
 			}else{
-				model = new ModelAndView("login");
+				model = new ModelAndView("loginB");
 				model.addObject("message", "Name or password is incorrect!");
 			}
 
@@ -56,12 +56,12 @@ public class LoginController{
 	}
 	@RequestMapping(value="/register**",method=RequestMethod.POST)
 	public ModelAndView register(@ModelAttribute("loginBean")LoginBean loginBean){
-System.out.println("123");
+
 		ModelAndView model= null;
 		try{
 				loginDelegate.insertUser(loginBean.getUsername(), loginBean.getPassword());
 
-				model = new ModelAndView("login");
+				model = new ModelAndView("loginB");
 				model.addObject("message", "Registration complites successfully!");
 
 		}catch(Exception e){
