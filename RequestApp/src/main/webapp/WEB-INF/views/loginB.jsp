@@ -37,7 +37,7 @@
 					<div class="panel-body">
 						<div class="row">
 							<div class="col-lg-12">
-								<form id="login-form" action="login" method="post" style="display: block;">
+								<form id="login-form" action="login" method="post" style="display: block;" onsubmit="return validate()">
 									<c:if test="${not empty message}">
 										<div id="message1" class="message1" style="color: red;">${message}</div>
 									</c:if>
@@ -69,7 +69,7 @@
 										</div>
 									</div> -->
 								</form>
-								<form id="register-form" action="register" method="post" style="display: none;">
+								<form id="register-form" action="register" method="post" style="display: none;" onsubmit="return validate()">
 									<c:if test="${not empty message}">
 										<div id="message1" class="message1" style="color: red;">${message}</div>
 									</c:if>

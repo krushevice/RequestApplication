@@ -1,6 +1,7 @@
 html, body
 {
     height: 90%;
+    border: 5px;
 }
 
 body
@@ -158,5 +159,21 @@ th
 {
   border: none;
 }
+#mainHeader {
+	background-color: #c0c0c0;
+	height: 50px;
+}
+	
+#headerText {
+	text-align: center;
+}
 
+#mainFooter {
+	background-color: #c0c0c0;
+	height: 50px;
+}
+
+#footerText {
+	text-align: center;
+}
 

@@ -35,7 +35,6 @@ public class LoginController{
 	}
 	@RequestMapping(value="/login**",method=RequestMethod.POST)
 	public ModelAndView executeLogin(@ModelAttribute("loginBean")LoginBean loginBean){
-
 		ModelAndView model= null;
 		try{
 			boolean isValidUser = loginDelegate.isValidUser(loginBean.getUsername(), loginBean.getPassword());
@@ -59,11 +58,16 @@ public class LoginController{
 
 		ModelAndView model= null;
 		try{
-				loginDelegate.insertUser(loginBean.getUsername(), loginBean.getPassword());
+				boolean reg = loginDelegate.insertUser(loginBean.getUsername(), loginBean.getPassword());
 
-				model = new ModelAndView("loginB");
-				model.addObject("message", "Registration complites successfully!");
-
+				if(reg){
+					model = new ModelAndView("loginB");
+					model.addObject("message", "Registration complites successfully!");
+				}else{
+					model = new ModelAndView("loginB");
+					model.addObject("message", "Registration error!");
+				}
+				
 		}catch(Exception e){
 			e.printStackTrace();
 		}

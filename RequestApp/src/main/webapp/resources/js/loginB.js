@@ -19,3 +19,36 @@ $(function() {
 	});
 
 });
+
+/*function validate(){
+	alert("1");
+	if($("#username").val()==""){
+		alert("Username can't be empty!");
+		$("#username").focus();
+		return false;
+	}
+	if($("#password").val()==""){
+		alert("Password can't be empty!");
+		$("#password").focus(); 
+		return false;
+	}
+}
+
+function validateReg(){
+	alert("2");
+	if($("#username").val()==""){
+		alert("Username can't be empty!");
+		$("#username").focus();
+		return false;
+	}
+	if($("#password").val()==""){
+		alert("Password can't be empty!");
+		$("#password").focus(); 
+		return false;
+	}
+	if($("#password").val()!=$("#confirm-password").val()){
+		alert("Password isn't the same!");
+		$("#password").focus(); 
+		return false;
+	}
+}*/

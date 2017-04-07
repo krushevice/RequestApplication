@@ -4,7 +4,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.sql.DataSource;
-
 import by.iba.requestApp.dao.UserDao;
 
 public class UserDaoImpl implements UserDao {
@@ -40,14 +39,20 @@ public class UserDaoImpl implements UserDao {
 	}
 
 	@Override
-	public void insertUser(String username, String password) throws SQLException {
+	public boolean insertUser(String username, String password) throws SQLException {
 
-		String query = "insert into user values(?,?,?)";
-		PreparedStatement pstmt = dataSource.getConnection().prepareStatement(query);
-		pstmt.setString(1, "2"); 
-		pstmt.setString(2, username); 
-		pstmt.setString(3, password);
-		pstmt.execute();
+		try {
+			String query = "insert into user values(?,?,?)";
+			PreparedStatement pstmt = dataSource.getConnection().prepareStatement(query);
+			//тут достать последний id в таблице
+			pstmt.setString(1, ""); 
+			pstmt.setString(2, username); 
+			pstmt.setString(3, password);
+			pstmt.execute();
+			return true;
+		} catch (Exception e) {
+			return false;
+		} 
 		
 	}
 

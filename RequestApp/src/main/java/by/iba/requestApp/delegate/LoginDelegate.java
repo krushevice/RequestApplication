@@ -19,7 +19,7 @@ public class LoginDelegate {
 		return userService.isValidUser(username, password);
 	}
 	
-	public void insertUser(String username, String password) throws SQLException {
-		userService.insertUser(username, password);
+	public boolean insertUser(String username, String password) throws SQLException {
+		return userService.insertUser(username, password);
 	}
 }
