@@ -24,6 +24,8 @@
 		<property name="username" value="" />
 		<property name="password" value="" />
 	</bean>	
+	
+	<!-- <import resource="security.xml" /> -->
 
 	<!-- <bean class="org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor"/> -->
 </beans>
