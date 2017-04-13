@@ -159,21 +159,3 @@ th
 {
   border: none;
 }
-#mainHeader {
-	background-color: #c0c0c0;
-	height: 50px;
-}
-	
-#headerText {
-	text-align: center;
-}
-
-#mainFooter {
-	background-color: #c0c0c0;
-	height: 50px;
-}
-
-#footerText {
-	text-align: center;
-}
-
