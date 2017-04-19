@@ -5,12 +5,23 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <%@ include file='header.jsp'%>
-
+	<style>
+    	td select,
+   		td input {
+      		width: 150px;
+      		height: 35x;
+      
+    	}
+		label {
+        	display: block;
+   			}
+  	</style>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-		<title>home</title>
+	    <link href="<c:url value="resources/bootstrap/css/bootstrap.min.css"/>" rel="stylesheet">
 		<link href="<c:url value="/resources/css/home.css" />" rel="stylesheet">
-		
+  <!--  <link href="<c:url value="resources/bootstrap/css/bootstrap.min.css"/>" rel="stylesheet">
+		<link href="<c:url value="/resources/css/loginB.css" />" rel="stylesheet">   -->	
 		<script type="text/javascript">
 			function createRequest() {
 				location.href = '/requestApp/createReq';
@@ -24,13 +35,12 @@
 	</head>
 	<body>
 		<form:form id="Choise">
-			<table cols="4" align="center" width="50%" height="100">
+			<table align="center" width="400" height="100">
 				<tr>
-					<th id="Greeting" colspan="2">Welcome, ${loginBean.username}!</th>
+					<th id="Greeting" colspan="2" align="center" width="130">Welcome, ${loginBean.username}!</th>
 				</tr>
 				<tr>
-					<th colspan="2">Please, choose the action! <%-- <a href="<c:url value="/createRequest" />"> sssss</a> --%>
-					</th>
+					<th colspan="2" align="center" width="130">Please, choose the action!</th>
 				</tr>
 				<tr>
 					<td align="center"><input class="btn" type="button" id="create"
