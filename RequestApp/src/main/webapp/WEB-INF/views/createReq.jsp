@@ -4,31 +4,23 @@
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<%@ include file='header.jsp'%>
 
+<%@ include file='header.jsp'%>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-		<link href="<c:url value="/resources/css/request.css" />" rel="stylesheet">
+		<link href="<c:url value="/resources/css/reqest.css" />" rel="stylesheet">
 		<script type="text/javascript" src="resources/js/linkedselect.js"></script>
-		<style>
-    		td select,
-   		    td input {
-      		width: 150px;
-      		height: 35x;
-      
-    		}
-  		</style>
 	</head>
 	<body>
-		<form:form id="Request">
-		<table align="center" width="400" height="200">
+		<form:form id="MainForm">
+		<table id="Request" align="center">
 			<tr>
-				<th id="Greeting" align="center" colspan="2" >Please, choose something!</th>
-			</tr>
+				<th colspan="2">Please, choose something!<hr></th>
+			</tr>			
 			<tr>
-				<td align="center" width="60">Product</td>
-        		<td align="center" width="60">
-         			<select  id="List1">
+				<td class="yourTD">Product</td>
+        		<td class="yourTD">
+         			<select class="yourChoise" id="List1" onchange="displayPrice();">
          			    <option></option>
            				<option value="1">Cake - 10 BYN / piece</option>
             			<option value="2">Cupcake - 7 BYN / package</option>
@@ -38,28 +30,26 @@
        			 </td>
        		</tr>
        		<tr>
-       			 <td align="center" width="60">Type</td>
-        		<td align="center" width="60">
-         			<select id="List2">
+       			 <td class="yourTD">Type</td>
+        		<td class="yourTD">
+         			<select class="yourChoise" id="List2">
           			</select>
        			 </td>
 			</tr>
 			<tr>
-				<td align="center" width="60">Count</td>
-				<td><input type="text" id="myId" maxlength="10" size="40" placeholder="count" onchange="displayPrice();"></td>
+				<td  class="yourTD">Count</td>
+				<td class="yourTD"><input type="text" class="yourChoise" id="count" maxlength="10" placeholder="count" onchange="displayPrice();"></td>
        		</tr>
        		<tr>
-				<td align="center" height="20" id="priceField" colspan = "2">
+				<td height="20" id="priceField" colspan="2">
 					&nbsp;
 				</td>
 			</tr>
-			<tr id="Buttons" >
-				<td colspan="1" align="center" style="width: 325px; "><input class="btn" type="button" id="cancel"
-						onclick="cancelRequest();" value="Cancel"></td>
-				<td colspan="1" align="center"><input class="btn" type="button" id="submit"
+			<tr id="Buttons">
+				<td  colspan="2" align="center"><input class="btn" type="button" id="cancel"
+						onclick="cancelRequest();" value="Cancel"><input class="btn" type="button" id="submit"
 						onclick="submitRequest();" value="Submit"></td>
 			</tr>
-
 		</table>
 		
 		
@@ -104,7 +94,7 @@
 				var secondList = document.getElementById("List2");
 				var what = firstList.options[firstList.selectedIndex].value;
 				var which = secondList.options[secondList.selectedIndex].value;		
-			    var countField = document.getElementById("myId").value;
+			    var countField = document.getElementById("count").value;
 			    var thisPrice = prices[what - 1] * countField;
 				confirm("Do you really want to pay " + thisPrice + " BYN?");
 			}
@@ -114,7 +104,7 @@
 				var secondList = document.getElementById("List2");
 				var what = firstList.options[firstList.selectedIndex].value;
 				var which = secondList.options[secondList.selectedIndex].value;		
-			    var countField = document.getElementById("myId").value;
+			    var countField = document.getElementById("count").value;
 			    var thisPrice = prices[what - 1] * countField;
 			    document.getElementById('priceField').firstChild.data = thisPrice + '    BYN';
 			}
