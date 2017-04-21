@@ -11,7 +11,10 @@
 		<script type="text/javascript" src="resources/js/linkedselect.js"></script>
 	</head>
 	<body>
-		<form:form name="form" id="MainForm">
+		<form:form id="MainForm" action="createReq" name="reqBean"  method="post">
+			<c:if test="${not empty message}">
+				<div id="message1" class="message1" style="color: red;">${message}</div>
+			</c:if>
 		<table id="Request" align="center">
 			<tr>
 				<th colspan="2">Please, choose something!<hr id="myHR"></th>
@@ -47,7 +50,7 @@
 			</tr>
 			<tr id="Buttons">
 				<td  colspan="2" align="center"><input class="btn" type="button" id="cancel"
-						onclick="cancelRequest();" value="Cancel"><input class="btn" type="button" id="submit"
+						onclick="cancelRequest();" value="Cancel"><input class="btn" type="submit" id="submit"
 						onclick="submitRequest();" value="Submit"></td>
 			</tr>
 		</table>

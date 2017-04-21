@@ -22,8 +22,8 @@
 
         <!-- <property name="hibernate.use_sql_comments">true</property> -->
 
-        <property name="hibernate.transaction.factory_class">org.hibernate.transaction.JDBCTransactionFactory</property>
-        <property name="hibernate.current_session_context_class">thread</property>
+        <!-- <property name="hibernate.transaction.factory_class">org.hibernate.transaction.JDBCTransactionFactory</property>
+        <property name="hibernate.current_session_context_class">thread</property> -->
         
         <!-- NOTE that after automapping with IDEA property username and password will delete -->
         <!--and will be:  Initial SessionFactory failedorg.hibernate.service.spi.ServiceException: Unable to create requested service-->

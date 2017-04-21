@@ -1,107 +1,69 @@
 package by.iba.requestApp.daoImpl;
 
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
-
-import javax.sql.DataSource;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import by.iba.requestApp.dao.UserDao;
 import by.iba.requestApp.viewBean.LoginBean;
 
+@Repository
 public class UserDaoImpl implements UserDao {
 	
-	SessionFactory sessionFactory = new Configuration()
-            .configure() // configures settings from hibernate.cfg.xml
-            .buildSessionFactory();
-
-	DataSource dataSource;
-
-	public DataSource getDataSource() {
-		return this.dataSource;
-	}
-
-	public void setDataSource(DataSource dataSource) {
-		this.dataSource = dataSource;
-	}
+	@Autowired
+	private SessionFactory sessionFactory; 
 
 	@Override
+	@Transactional(propagation=Propagation.REQUIRED )
 	public boolean isValidUser(String username, String password) throws SQLException {
-				
+		System.out.println("isValidUser1");
+		System.out.println("isValidUser="+sessionFactory);
 		Session session = sessionFactory.openSession();
-	    
+		System.out.println("isValidUser2");	
 	    Query query = session.createQuery("from LoginBean where username = :username and password = :password");
 		query.setParameter("username", username);
 		query.setParameter("password", password);
+		System.out.println("isValidUser3");
 		List list = query.list();
 		session.close();
+		System.out.println("isValidUser4");	
 		if(list.size()>0){
+			System.out.println("isValidUser5");	
 			return true;
 		}
 
 		return false;
-				
-		  /*String query = "Select count(1) from user where username = ? and password = ?";
-		  PreparedStatement pstmt = dataSource.getConnection().prepareStatement(query);
-		  pstmt.setString(1, username); 
-		  pstmt.setString(2, password); 
-		  ResultSet resultSet = pstmt.executeQuery(); 
-		  if(resultSet.next()) 
-			  return (resultSet.getInt(1) > 0); 
-		  else 
-			  return false;*/
-		 
-		/*if (username.equals("admin") && password.equals("135")) {
-			return true;
-		} else {
-			return false;
-		}*/
 	}
 
 	@Override
+	@Transactional
 	public boolean insertUser(String username, String password) throws SQLException {
-/*		System.out.println("daoImpl insertUser");
-		SessionFactory sessionFactory;
-	    sessionFactory = new Configuration()
-	            .configure() // configures settings from hibernate.cfg.xml
-	            .buildSessionFactory();*/
 
-	    Session session = sessionFactory.openSession();
-	    Transaction tx = session.beginTransaction();
+		Session session = sessionFactory.openSession();
 	    int id = lastId(session)+1;
-	   
 	    LoginBean lb = new LoginBean();
-	    lb.setId(id);
-	    lb.setUsername(username);
-	    lb.setPassword(password);
-	    session.save(lb);
-	    tx.commit();
-	    session.close();
+	    if(id>0){
+	    	lb.setId(id);
+		    lb.setUsername(username);
+		    lb.setPassword(password);
+		    session.save(lb);
+	    }else{
+	    	//??
+	    }
+
 	    return true;
-
-
-		/*try {
-			String query = "insert into user values(?,?,?)";
-			PreparedStatement pstmt = dataSource.getConnection().prepareStatement(query);
-			//тут достать последний id в таблице
-			pstmt.setString(1, ""); 
-			pstmt.setString(2, username); 
-			pstmt.setString(3, password);
-			pstmt.execute();
-			return true;
-		} catch (Exception e) {
-			return false;
-		} */
 		
 	}
-	
+	@Transactional(propagation=Propagation.MANDATORY)
 	public int lastId(Session session) throws SQLException{
 		String querySQL = "select max(id) from LoginBean";
 		Query query = session.createQuery(querySQL);
@@ -110,15 +72,6 @@ public class UserDaoImpl implements UserDao {
 			return (Integer) list.get(0);
 		}
 		return -1;
-	
-		 /*String query = "Select max(id) from user";
-		 PreparedStatement pstmt = dataSource.getConnection().prepareStatement(query);
-		 ResultSet resultSet = pstmt.executeQuery();
-		 if(resultSet.next()) {
-			 return resultSet.getInt(1); 
-		 }
-		 else 
-			 return -1;*/
 	}
 
 }
