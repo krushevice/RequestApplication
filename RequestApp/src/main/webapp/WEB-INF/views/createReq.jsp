@@ -19,7 +19,7 @@
 			<tr>
 				<td class="yourTD">Product</td>
         		<td class="yourTD">
-         			<select class="yourChoise" name="firstList" id="List1">
+         			<select class="yourChoise" name="product" id="List1">
          			    <option></option>
            				<option value="1">Cake - 10 BYN / piece</option>
             			<option value="2">Cupcake - 7 BYN / package</option>
@@ -31,17 +31,18 @@
        		<tr>
        			 <td class="yourTD">Type</td>
         		<td class="yourTD">
-         			<select class="yourChoise" id="List2">
+         			<select class="yourChoise" name="productType" id="List2">
           			</select>
        			 </td>
 			</tr>
 			<tr>
 				<td  class="yourTD">Count</td>
-				<td class="yourTD"><input type="text" class="yourChoise" name="newCount" id="count" maxlength="10" placeholder="count"></td>
+				<td class="yourTD"><input type="text" class="yourChoise" name="count" id="count" maxlength="10" placeholder="count" onchange="displayPrice();"></td>
        		</tr>
        		<tr>
 				<td height="20" id="priceField" colspan="2">
 					&nbsp;
+					<input type="hidden" id="price" name="price"/>
 				</td>
 			</tr>
 			<tr id="Buttons">
@@ -106,6 +107,7 @@
 			    var countField = document.getElementById("count").value;
 			    var thisPrice = prices[what - 1] * countField;
 			    document.getElementById('priceField').firstChild.data = thisPrice + '    BYN';
+			    document.getElementById('price').value = thisPrice;
 			}
 	</script>
 	</form:form>
