@@ -2,6 +2,8 @@ body {
     padding-top: 90px;
 }
 .panel-login {
+	margin-top:20px;
+	margin-bottom:20px;
 	border-color: #ccc;
 	-webkit-box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.2);
 	-moz-box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.2);
