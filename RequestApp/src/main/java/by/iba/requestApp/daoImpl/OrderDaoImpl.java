@@ -2,16 +2,15 @@ package by.iba.requestApp.daoImpl;
 
 import java.util.List;
 
-import org.hibernate.Query;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
-import org.hibernate.cfg.Configuration;
+import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.servlet.ModelAndView;
 
 import by.iba.requestApp.dao.OrderDao;
 import by.iba.requestApp.viewBean.RequestBean;
@@ -28,7 +27,7 @@ public class OrderDaoImpl implements OrderDao{
 		//getCurrentSession();
 		Session session = sessionFactory.openSession();
 		
-	    //Transaction tx = session.beginTransaction();
+	  Transaction tx = session.beginTransaction();
 	    
 	    int id=-1;
 		String querySQL = "select max(id) from RequestBean";
@@ -42,8 +41,35 @@ public class OrderDaoImpl implements OrderDao{
 	    System.out.println("rb="+rb);
 	    session.save(rb);
 	    System.out.println("end");
-	    //tx.commit();
-	    session.flush();
+	  
+	    //session.flush();
+	  tx.commit();
+	    session.close();
+	    return true;
+	}
+	
+	public boolean selectOrder(RequestBean rb) {
+
+		//getCurrentSession();
+		Session session = sessionFactory.openSession();
+		
+	  Transaction tx = session.beginTransaction();
+	    
+	    int id=-1;
+		String querySQL = "select max(id) from RequestBean";
+		Query query = session.createQuery(querySQL);
+		List list = query.list();
+		if(list.size()>0){
+			id = (Integer) list.get(0) + 1;
+		}		
+	    //System.out.println("id=" + id);
+	    rb.setId(id);
+	    System.out.println("rb="+rb);
+	    session.save(rb);
+	    System.out.println("end");
+	  
+	    //session.flush();
+	  tx.commit();
 	    session.close();
 	    return true;
 	}

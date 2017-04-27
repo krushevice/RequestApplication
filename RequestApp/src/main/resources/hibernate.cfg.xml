@@ -4,11 +4,21 @@
         "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
 <hibernate-configuration>
     <session-factory>
-        <property name="show_sql">true</property>
-    	<property name="format_sql">true</property>
-    	<property name="dialect">org.hibernate.dialect.MySQLDialect</property>
-        <property name="connection.url">jdbc:sqlite:D:/Mydb/app.db</property>
-        <property name="connection.driver_class">org.sqlite.JDBC</property>
+    	
+    	<!-- <property name="dialect">org.hibernate.dialect.MySQLDialect</property> -->
+        <property name="connection.username"></property>
+        <property name="connection.password"></property>
+        
+        <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+
+	    <property name="hibernate.show_sql">true</property>
+	    <property name="format_sql">true</property>
+	    
+	    <property name="connection.pool.size">1</property>
+        
+        <property name="hibernate.current_session_context_class">thread</property>
+        
+       <!--  <property name="hibernate.transaction.factory_class">org.hibernate.transaction.JDBCTransactionFactory</property> -->
         
         <!-- <property name="connection.provider_class">org.hibernate.connection.C3P0ConnectionProvider</property>     -->    
         <!-- <property name="hibernate.c3p0.acquire_increment">1</property> -->
@@ -27,10 +37,11 @@
         
         <!-- NOTE that after automapping with IDEA property username and password will delete -->
         <!--and will be:  Initial SessionFactory failedorg.hibernate.service.spi.ServiceException: Unable to create requested service-->
-        <property name="connection.username"></property>
-        <property name="connection.password"></property>
+        
         <!-- NOTE that after automapping with IDEA property username and password will delete -->
+
         <mapping class="by.iba.requestApp.viewBean.LoginBean"/>
+        <mapping class="by.iba.requestApp.viewBean.RequestBean"/>
 
         <!-- <property name="hbm2ddl.auto">update</property> -->
     </session-factory>

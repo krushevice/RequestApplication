@@ -16,4 +16,12 @@ public class OrderDelegate {
 	public boolean insertOrder(RequestBean rb) throws SQLException {
 		return orderService.insertOrder(rb);
 	}
+	
+	/*public boolean selectAllOrders() throws SQLException {
+		return orderService.selectAllOrders();
+	}
+	
+	public boolean selectAllOrders() throws SQLException {
+		return orderService.selectAllOrders();
+	}*/
 }
