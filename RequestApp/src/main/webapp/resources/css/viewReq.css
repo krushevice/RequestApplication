@@ -1,0 +1,94 @@
+html, body {
+
+}
+
+#MainForm {
+	margin-left:25%;
+	margin-right:25%;
+	width:50%;
+	border-color: #ccc;
+	-webkit-box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.2);
+	-moz-box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.2);
+	box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.2);
+	overflow:auto;
+	color: #00415d;
+	background-color: #fff;
+	margin-bottom:20px;
+	margin-top:20px;
+	padding-bottom:20px;
+}
+
+#Read {
+
+}
+
+td {
+	height: 45px;
+	width: 300px;
+	text-align: center;
+	color: #00415d;
+    border-top: 1px solid #DCDCDC;
+    padding: 10px 15px;
+}
+
+.canChoose:hover td {
+	background: #F0F8FF;
+}
+
+th {
+	padding-top:20px;
+	padding-bottom:20px;
+	color: #00415d;
+	background-color: #fff;
+	border-color: #fff;
+	text-align:center;
+}
+#myHR{
+	margin-top:10px;
+	margin-bottom:0px;
+	clear:both;
+	border:0;
+	height:1px;
+	background-image:-webkit-linear-gradient(left,rgba(0, 0, 0, 0),rgba(0, 0, 0, 0.15),rgba(0, 0, 0, 0));
+	background-image:-moz-linear-gradient(left,rgba(0,0,0,0),rgba(0,0,0,0.15),rgba(0,0,0,0));
+	background-image:-ms-linear-gradient(left,rgba(0,0,0,0),rgba(0,0,0,0.15),rgba(0,0,0,0));
+	background-image:-o-linear-gradient(left,rgba(0,0,0,0),rgba(0,0,0,0.15),rgba(0,0,0,0));
+}
+.bg {
+
+	background: rgba(169, 169, 169, .15);
+}
+#Greeting {
+	text-decoration: none;
+	color: #666;
+	font-weight: bold;
+	font-size: 15px;
+	-webkit-transition: all 0.1s linear;
+	-moz-transition: all 0.1s linear;
+	transition: all 0.1s linear;
+}
+#priceField {
+	text-align:center;
+}
+.btn {
+	background-color: #59B2E0;
+	outline: none;
+	color: #fff;
+	font-size: 14px;
+	height: auto;
+	width: 150px;
+	margin-left:30px;
+	margin-right:30px;	
+	margin-top:10px;
+	margin-bottom:20px;
+	font-weight: normal;
+	padding: 20px, 10px, 20px, 10px;
+	text-transform: uppercase;
+	border-color: #59B2E6;
+}
+.btn:hover,
+.btn:focus {
+	color: #fff;
+	background-color: #53A3CD;
+	border-color: #53A3CD;
+}
