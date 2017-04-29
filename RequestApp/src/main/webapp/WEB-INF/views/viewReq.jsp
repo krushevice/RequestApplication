@@ -16,22 +16,37 @@
 			</c:if>
 		<table id="Read" align="center">
 			<tr>
-				<th colspan="4">That's all you've ordered<hr id="myHR"></th>
+				<th colspan="4">That's all you've ordered<hr id="hr"></th>
 			</tr>			
 			<tr class="bg">
-				<td class="header">Product</td>
-        		<td class="header">Type</td>
-        		<td class="header">Count</td>
-        		<td class="header">Price</td>
+				<td>Product</td>
+        		<td>Type</td>
+        		<td>Count</td>
+        		<td>Price</td>
        		</tr>
        		<tr class=canChoose>
-				<td class="simple"></td>
-        		<td class="simple"></td>
-        		<td class="simple"></td>
-        		<td class="simple"></td>
+				<td></td>
+        		<td></td>
+        		<td></td>
+        		<td></td>
+			</tr>
+			<tr class="noBorder">
+				<td colspan="4" id="simpleString" align="center">				
+					To create new request click here
+				</td>
+			</tr>
+			<tr class="Buttons">
+				<td class="noBorder" colspan="4" align="center">
+					<input class="btn" type="button" id="create" onclick="createRequest();" value="Create">		
+				</td>
 			</tr>
 		</table>
 	</form:form>
-		<%@ include file='footer.jsp'%>
+	<%@ include file='footer.jsp'%>
+	<script type="text/javascript">
+			function createRequest() {
+				location.href = '/requestApp/createReq';
+			}
+	</script>	
 </body>
 </html>
