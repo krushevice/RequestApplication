@@ -30,6 +30,11 @@ public class RequestController {
 		return "viewReq";
 	}
 	
+	@RequestMapping(value = "/home", method = RequestMethod.GET)
+		public String goHome() {
+		return "home";
+	}
+	
 	@RequestMapping(value = "/createReq", method=RequestMethod.POST)
 	public ModelAndView insertOrder(@ModelAttribute("reqBean")RequestBean reqBean){
 		System.out.println("insertRequest");

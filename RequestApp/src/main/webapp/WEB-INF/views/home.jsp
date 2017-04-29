@@ -35,7 +35,7 @@
 		<form:form id="Choise">
 			<table align="center" width="400" height="100">
 				<tr>
-					<th id="Greeting" colspan="2">Welcome, ${loginBean.username}!<hr id="myHR"></th>
+					<th id="Greeting" colspan="2">Welcome!<hr id="myHR"></th>
 				</tr>
 				<tr>
 					<td id="asking" colspan="2" align="center" width="130">Please, choose the action!</td>

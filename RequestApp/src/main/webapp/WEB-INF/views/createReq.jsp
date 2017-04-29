@@ -17,7 +17,7 @@
 			</c:if>
 		<table id="Request" align="center">
 			<tr>
-				<th colspan="2">Please, choose something!<hr id="myHR"></th>
+				<th colspan="2">Please, choose something!<hr id="myHR" class="hr"></th>
 			</tr>			
 			<tr>
 				<td class="yourTD">Product</td>
@@ -48,10 +48,22 @@
 					<input type="hidden" id="price" name="price"/>
 				</td>
 			</tr>
-			<tr id="Buttons">
+			<tr class="Buttons">
 				<td  colspan="2" align="center"><input class="btn" type="button" id="cancel"
-						onclick="cancelRequest();" value="Cancel"><input class="btn" type="submit" id="submit"
-						onclick="submitRequest();" value="Submit"></td>
+						onclick="goHome();" value="Cancel"><input class="btn" type="submit" id="submit"
+						onclick="submitRequest();" value="Submit">
+						<hr id="myHR" class="hr">
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2" id="simpleString" align="center">
+					To read your previous requests click here
+				</td>
+			</tr>
+			<tr class="Buttons">
+			<td colspan="2" align="center">
+				<input class="btn" type="button" id="view" onclick="viewRequests();" value="Read">
+				</td>
 			</tr>
 		</table>
 		
@@ -111,6 +123,14 @@
 			    var thisPrice = prices[what - 1] * countField;
 			    document.getElementById('priceField').firstChild.data = thisPrice + '    BYN';
 			    document.getElementById('price').value = thisPrice;
+			}
+			
+			function viewRequests() {
+				location.href = '/requestApp/viewReq';
+			}
+			
+			function goHome() {
+				location.href = '/requestApp/home';
 			}
 	</script>
 	</form:form>

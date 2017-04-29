@@ -16,4 +16,6 @@ public class HomeController {
 		model.addObject("loginBean", loginBean);
 		return model;
 	}
+	
+	
 }
