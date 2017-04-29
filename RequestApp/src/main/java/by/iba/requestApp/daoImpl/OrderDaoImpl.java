@@ -70,7 +70,7 @@ public class OrderDaoImpl implements OrderDao{
 	    System.out.println("end");
 	  
 	    //session.flush();
-	  tx.commit();
+	    tx.commit();
 	    session.close();
 	    return true;
 	}
@@ -83,8 +83,9 @@ public class OrderDaoImpl implements OrderDao{
 		
 		/*String querySQL = "from RequestBean";*/
 		Query query = session.createQuery("from RequestBean");
-		
 		List list = query.list();
+		tx.commit();
+		session.close();
 		return list;
 	}
 	/*public SessionFactory getSessionFactory() {
