@@ -16,7 +16,7 @@
 			</c:if>
 		<table id="Read" align="center">
 			<tr>
-				<th colspan="4">That's all you've ordered<hr id="hr"></th>
+				<th colspan="4">That's all you've ordered<hr class="hr"></th>
 			</tr>			
 			<tr class="bg">
 				<td>Product</td>
@@ -31,7 +31,8 @@
         		<td></td>
 			</tr>
 			<tr class="noBorder">
-				<td colspan="4" id="simpleString" align="center">				
+				<td colspan="4" id="simpleString" align="center">	
+					<hr class="hr">			
 					To create new request click here
 				</td>
 			</tr>
