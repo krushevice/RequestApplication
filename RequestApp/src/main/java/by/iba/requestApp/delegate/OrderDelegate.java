@@ -1,6 +1,7 @@
 package by.iba.requestApp.delegate;
 
 import java.sql.SQLException;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -17,10 +18,10 @@ public class OrderDelegate {
 		return orderService.insertOrder(rb);
 	}
 	
-	/*public boolean selectAllOrders() throws SQLException {
+	public List<RequestBean> selectAllOrders() throws SQLException {
 		return orderService.selectAllOrders();
 	}
-	
+	/*
 	public boolean selectAllOrders() throws SQLException {
 		return orderService.selectAllOrders();
 	}*/

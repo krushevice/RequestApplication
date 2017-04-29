@@ -1,13 +1,18 @@
 package by.iba.requestApp.controllers;
 
+import java.sql.SQLException;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import by.iba.requestApp.delegate.OrderDelegate;
+import by.iba.requestApp.service.OrderService;
 import by.iba.requestApp.viewBean.RequestBean;
 
 @Controller
@@ -25,15 +30,20 @@ public class RequestController {
 		return model;
 	}	
 
-	@RequestMapping(value = "/viewReq", method = RequestMethod.GET)
+	/*@RequestMapping(value = "/viewReq", method = RequestMethod.GET)
 		public String viewRequests() {
 		return "viewReq";
-	}
+	}*/
 	
-	@RequestMapping(value = "/home", method = RequestMethod.GET)
-		public String goHome() {
-		return "home";
-	}
+	@RequestMapping(value = { "/viewReq" }, method = RequestMethod.GET)    
+	public String listUsers(ModelMap model) throws SQLException {
+ 
+        List<RequestBean> orders = orderDelegate.selectAllOrders();
+        System.out.println("orders = " + orders);
+        model.addAttribute("orders", orders);
+        return "viewReq";
+    }
+	
 	
 	@RequestMapping(value = "/createReq", method=RequestMethod.POST)
 	public ModelAndView insertOrder(@ModelAttribute("reqBean")RequestBean reqBean){

@@ -1,5 +1,6 @@
 package by.iba.requestApp.daoImpl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -74,6 +75,18 @@ public class OrderDaoImpl implements OrderDao{
 	    return true;
 	}
 	
+	
+	public List<RequestBean> selectAllOrders(){
+		
+		Session session = sessionFactory.openSession();		
+		Transaction tx = session.beginTransaction();
+		
+		/*String querySQL = "from RequestBean";*/
+		Query query = session.createQuery("from RequestBean");
+		
+		List list = query.list();
+		return list;
+	}
 	/*public SessionFactory getSessionFactory() {
 		return sessionFactory;
 	}

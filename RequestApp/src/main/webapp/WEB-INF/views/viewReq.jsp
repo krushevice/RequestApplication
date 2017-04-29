@@ -24,12 +24,14 @@
         		<td>Count</td>
         		<td>Price</td>
        		</tr>
-       		<tr class=canChoose>
-				<td></td>
-        		<td></td>
-        		<td></td>
-        		<td></td>
-			</tr>
+			<c:forEach items="${orders}" var="order">
+                <tr class="canChoose">
+                    <td>${order.product}</td>
+                    <td>${order.productType}</td>
+                    <td>${order.count}</td>
+                    <td>${order.price}</td>
+                </tr>
+            </c:forEach>
 			<tr class="noBorder">
 				<td colspan="4" id="simpleString" align="center">	
 					<hr class="hr">			

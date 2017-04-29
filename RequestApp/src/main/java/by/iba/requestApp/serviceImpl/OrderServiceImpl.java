@@ -1,6 +1,7 @@
 package by.iba.requestApp.serviceImpl;
 
 import java.sql.SQLException;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,5 +18,9 @@ public class OrderServiceImpl implements OrderService{
 	@Override
 	public boolean insertOrder(RequestBean rb) throws SQLException {
 		return orderDao.insertOrder(rb);	
+	}
+	
+	public List<RequestBean> selectAllOrders() throws SQLException {
+		return orderDao.selectAllOrders();
 	}
 }
