@@ -110,8 +110,12 @@
 				var what = firstList.options[firstList.selectedIndex].value;
 				var which = secondList.options[secondList.selectedIndex].value;		
 			    var countField = document.getElementById("count").value;
-			    var thisPrice = prices[what - 1] * countField;
-				confirm("Do you really want to pay " + thisPrice + " BYN?");
+			    if (countField <= 0) {
+			    	alert ('Cont must be a positive number');
+			    } else {
+				    var thisPrice = prices[what - 1] * countField;
+					confirm("Do you really want to pay " + thisPrice + " BYN?");
+			    }
 			}
 			
 			function displayPrice() {
@@ -120,9 +124,13 @@
 				var what = firstList.options[firstList.selectedIndex].value;
 				var which = secondList.options[secondList.selectedIndex].value;		
 			    var countField = document.getElementById("count").value;
-			    var thisPrice = prices[what - 1] * countField;
-			    document.getElementById('priceField').firstChild.data = thisPrice + '    BYN';
-			    document.getElementById('price').value = thisPrice;
+			    if (countField <= 0) {
+			    	alert ('Cont must be a positive number');
+			    } else {
+				    var thisPrice = prices[what - 1] * countField;
+				    document.getElementById('priceField').firstChild.data = thisPrice + '    BYN';
+				    document.getElementById('price').value = thisPrice;
+			    }
 			}
 			
 			function viewRequests() {

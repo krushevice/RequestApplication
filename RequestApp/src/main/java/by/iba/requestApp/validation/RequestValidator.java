@@ -9,6 +9,8 @@ import by.iba.requestApp.viewBean.RequestBean;
 
 @Component
 public class RequestValidator implements Validator{
+	
+	@Override
 	public boolean supports(Class<?> myClass) {
 		return RequestBean.class.isAssignableFrom(myClass);
 	}
@@ -22,10 +24,9 @@ public class RequestValidator implements Validator{
 		}
 		
 		int count = requestBean.getCount();		
-		if (count < 0) {
+		if (count == -1) {
 			errors.rejectValue("count", "count must be positive!");
 		}
-		
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "count", "count.empty","count can't be empty!");
 
 		
