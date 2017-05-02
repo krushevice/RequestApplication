@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -13,6 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import by.iba.requestApp.delegate.OrderDelegate;
 import by.iba.requestApp.service.OrderService;
+import by.iba.requestApp.validation.RequestValidator;
 import by.iba.requestApp.viewBean.RequestBean;
 
 @Controller
@@ -20,6 +22,8 @@ public class RequestController {
 	
 	@Autowired  
 	private OrderDelegate orderDelegate;
+	@Autowired
+	private RequestValidator requestValidator;
 	
 	@RequestMapping(value = "/createReq", method=RequestMethod.GET)
 	public ModelAndView createRequest(){
@@ -30,14 +34,14 @@ public class RequestController {
 		return model;
 	}	
 
-	/*@RequestMapping(value = "/viewReq", method = RequestMethod.GET)
+
+	@RequestMapping(value = "/home", method = RequestMethod.GET)
 		public String viewRequests() {
-		return "viewReq";
-	}*/
+		return "home";
+	}
 	
 	@RequestMapping(value = { "/viewReq" }, method = RequestMethod.GET)    
-	public String listUsers(ModelMap model) throws SQLException {
- 
+	public String listUsers(ModelMap model) throws SQLException { 
         List<RequestBean> orders = orderDelegate.selectAllOrders();
         System.out.println("orders = " + orders);
         model.addAttribute("orders", orders);
@@ -46,17 +50,18 @@ public class RequestController {
 	
 	
 	@RequestMapping(value = "/createReq", method=RequestMethod.POST)
-	public ModelAndView insertOrder(@ModelAttribute("reqBean")RequestBean reqBean){
+	public ModelAndView insertOrder(@ModelAttribute("reqBean")RequestBean reqBean, BindingResult result){
 		System.out.println("insertRequest");
 		ModelAndView model= null;
 		try{
-			boolean reg = orderDelegate.insertOrder(reqBean);
-			if(reg){
-				model = new ModelAndView("createReq");
-				model.addObject("message", "Creation complites successfully!");
-			}else{
+		//	boolean reg = orderDelegate.insertOrder(reqBean);
+			if(result.hasErrors()) {
 				model = new ModelAndView("createReq");
 				model.addObject("message", "Creation error!");
+
+			} else{
+				model = new ModelAndView("createReq");
+				model.addObject("message", "Creation complites successfully!");
 			}				
 		}catch(Exception e){
 			e.printStackTrace();

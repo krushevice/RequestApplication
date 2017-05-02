@@ -26,7 +26,6 @@ public class RequestBean {
 	@Column(name="price")
 	private int price;
 	
-	
 	public int getId() {
 		return id;
 	}

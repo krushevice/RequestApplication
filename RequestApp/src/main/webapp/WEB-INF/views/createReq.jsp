@@ -23,7 +23,7 @@
 				<td class="yourTD">Product</td>
         		<td class="yourTD">
          			<select class="yourChoise" name="product" id="List1">
-         			    <option></option>
+         			    <option value="0"></option>
            				<option value="1">Cake - 10 BYN / piece</option>
             			<option value="2">Cupcake - 7 BYN / package</option>
             			<option value="3">Cookie - 4 BYN / package</option>
@@ -49,10 +49,10 @@
 				</td>
 			</tr>
 			<tr class="Buttons">
-				<td  colspan="2" align="center"><input class="btn" type="button" id="cancel"
-						onclick="goHome();" value="Cancel"><input class="btn" type="submit" id="submit"
-						onclick="submitRequest();" value="Submit">
-						<hr id="myHR" class="hr">
+				<td  colspan="2" align="center">
+					<input class="btn" type="button" id="cancel" onclick="goHome();" value="Cancel">
+					<input class="btn" type="submit" id="submit" onclick="submitRequest();" value="Submit">
+					<hr id="myHR" class="hr">
 				</td>
 			</tr>
 			<tr>
