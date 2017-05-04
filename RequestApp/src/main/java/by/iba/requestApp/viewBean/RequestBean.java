@@ -4,6 +4,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name="orders")
@@ -14,17 +15,20 @@ public class RequestBean {
     @Column(name="id")	
 	private int id;
 	
-	@Column(name="product")
+	@Column(name="product_id")
+	@NotNull(message = "Please select a product")
 	private int product;
 	
-	@Column(name="productType")
+	@Column(name="product_type")
+	@NotNull(message = "Please select a product type")
 	private int productType;
 	
 	@Column(name="count")
 	private int count;
-	
+
 	@Column(name="price")
 	private int price;
+	
 	
 	public int getId() {
 		return id;

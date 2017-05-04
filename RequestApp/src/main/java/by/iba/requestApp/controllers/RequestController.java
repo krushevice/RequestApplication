@@ -7,14 +7,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import by.iba.requestApp.delegate.OrderDelegate;
-import by.iba.requestApp.service.OrderService;
-import by.iba.requestApp.validation.RequestValidator;
 import by.iba.requestApp.viewBean.RequestBean;
 
 @Controller
@@ -22,8 +21,6 @@ public class RequestController {
 	
 	@Autowired  
 	private OrderDelegate orderDelegate;
-	@Autowired
-	private RequestValidator requestValidator;
 	
 	@RequestMapping(value = "/createReq", method=RequestMethod.GET)
 	public ModelAndView createRequest(){
@@ -34,14 +31,14 @@ public class RequestController {
 		return model;
 	}	
 
-
-	@RequestMapping(value = "/home", method = RequestMethod.GET)
+	/*@RequestMapping(value = "/viewReq", method = RequestMethod.GET)
 		public String viewRequests() {
-		return "home";
-	}
+		return "viewReq";
+	}*/
 	
 	@RequestMapping(value = { "/viewReq" }, method = RequestMethod.GET)    
-	public String listUsers(ModelMap model) throws SQLException { 
+	public String listUsers(ModelMap model) throws SQLException {
+ 
         List<RequestBean> orders = orderDelegate.selectAllOrders();
         System.out.println("orders = " + orders);
         model.addAttribute("orders", orders);
@@ -54,14 +51,26 @@ public class RequestController {
 		System.out.println("insertRequest");
 		ModelAndView model= null;
 		try{
-		//	boolean reg = orderDelegate.insertOrder(reqBean);
-			if(result.hasErrors()) {
+			if (result.hasErrors()) {
+				List<FieldError> errors = result.getFieldErrors();
+				String errorStr = "";
+			    for (FieldError error : errors ) {
+			    	errorStr += error.getDefaultMessage() + " ,";
+			    }
+			    errorStr=errorStr.substring(0,errorStr.length()-2);
+				System.out.println(errorStr);
 				model = new ModelAndView("createReq");
-				model.addObject("message", "Creation error!");
-
-			} else{
+				model.addObject("message", errorStr);
+				return model;
+	        }
+			
+			boolean reg = orderDelegate.insertOrder(reqBean);
+			if(reg){
 				model = new ModelAndView("createReq");
 				model.addObject("message", "Creation complites successfully!");
+			}else{
+				model = new ModelAndView("createReq");
+				model.addObject("message", "Creation error!");
 			}				
 		}catch(Exception e){
 			e.printStackTrace();

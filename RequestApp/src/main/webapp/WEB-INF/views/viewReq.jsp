@@ -32,6 +32,15 @@
                     <td>${order.price}</td>
                 </tr>
             </c:forEach>
+			<%-- <c:forEach items="${orders}" var="order">
+                <tr class="canChoose">
+                	<td>${order.id}</td>
+                    <td>${order.name}</td>
+                    <td>${order.product_type_name}</td>
+                    <td>${order.count}</td>
+                    <td>${order.price}</td>
+                </tr>
+            </c:forEach> --%>
 			<tr class="noBorder">
 				<td colspan="4" id="simpleString" align="center">	
 					<hr class="hr">			

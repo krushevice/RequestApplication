@@ -11,7 +11,7 @@
 		<script type="text/javascript" src="resources/js/linkedselect.js"></script>
 	</head>
 	<body>
-		<form:form id="MainForm" action="createReq" name="reqBean"  method="post">
+		<form:form id="MainForm" action="createReq" name="reqBean"  method="post" onsubmit="return validate()">
 			<c:if test="${not empty message}">
 				<div id="message1" class="message1" style="color: red;">${message}</div>
 			</c:if>
@@ -23,7 +23,7 @@
 				<td class="yourTD">Product</td>
         		<td class="yourTD">
          			<select class="yourChoise" name="product" id="List1">
-         			    <option value="0"></option>
+         			    <option></option>
            				<option value="1">Cake - 10 BYN / piece</option>
             			<option value="2">Cupcake - 7 BYN / package</option>
             			<option value="3">Cookie - 4 BYN / package</option>
@@ -49,9 +49,9 @@
 				</td>
 			</tr>
 			<tr class="Buttons">
-				<td  colspan="2" align="center">
-					<input class="btn" type="button" id="cancel" onclick="goHome();" value="Cancel">
-					<input class="btn" type="submit" id="submit" onclick="submitRequest();" value="Submit">
+				<td  colspan="2" align="center"><input class="btn" type="button" id="cancel"
+					onclick="goHome();" value="Cancel"><input class="btn" type="submit" id="submit"
+					onclick="submitRequest();" value="Submit">
 					<hr id="myHR" class="hr">
 				</td>
 			</tr>
@@ -110,12 +110,8 @@
 				var what = firstList.options[firstList.selectedIndex].value;
 				var which = secondList.options[secondList.selectedIndex].value;		
 			    var countField = document.getElementById("count").value;
-			    if (countField <= 0) {
-			    	alert ('Cont must be a positive number');
-			    } else {
-				    var thisPrice = prices[what - 1] * countField;
-					confirm("Do you really want to pay " + thisPrice + " BYN?");
-			    }
+			    var thisPrice = prices[what - 1] * countField;
+				confirm("Do you really want to pay " + thisPrice + " BYN?");
 			}
 			
 			function displayPrice() {
@@ -124,13 +120,9 @@
 				var what = firstList.options[firstList.selectedIndex].value;
 				var which = secondList.options[secondList.selectedIndex].value;		
 			    var countField = document.getElementById("count").value;
-			    if (countField <= 0) {
-			    	alert ('Cont must be a positive number');
-			    } else {
-				    var thisPrice = prices[what - 1] * countField;
-				    document.getElementById('priceField').firstChild.data = thisPrice + '    BYN';
-				    document.getElementById('price').value = thisPrice;
-			    }
+			    var thisPrice = prices[what - 1] * countField;
+			    document.getElementById('priceField').firstChild.data = thisPrice + '    BYN';
+			    document.getElementById('price').value = thisPrice;
 			}
 			
 			function viewRequests() {
@@ -139,6 +131,30 @@
 			
 			function goHome() {
 				location.href = '/requestApp/home';
+			}
+			
+			function validate() {
+				if($("#List1").val()==""){
+					alert("Please, choose a product");
+					$("#List1").focus();
+					return false;
+				}
+				if($("#List2").val()==""){
+					alert("Please, choose a product type");
+					$("#List2").focus(); 
+					return false;
+				}
+				if($("#count").val()==""){
+					alert("Count error");
+					$("#product").focus();
+					return false;
+				}
+				if($("#price").val()==""){
+					alert("Price error");
+					$("#price").focus(); 
+					return false;
+				}
+				return true;
 			}
 	</script>
 	</form:form>

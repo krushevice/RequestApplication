@@ -82,6 +82,10 @@ public class OrderDaoImpl implements OrderDao{
 		Transaction tx = session.beginTransaction();
 		
 		/*String querySQL = "from RequestBean";*/
+		/*String querySQL = "select a.id, a.product_id, b.name, a.product_type, c.product_type_name, a.count, a.price "
+				+ "from orders a "
+				+ "join product_name b on a.product_id = b.id "
+				+ "join product_type c on a.product_id=c.product_id and a.product_type=c.product_type";*/
 		Query query = session.createQuery("from RequestBean");
 		List list = query.list();
 		tx.commit();
