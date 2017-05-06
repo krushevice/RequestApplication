@@ -111,8 +111,13 @@
 				var what = firstList.options[firstList.selectedIndex].value;
 				var which = secondList.options[secondList.selectedIndex].value;		
 			    var countField = document.getElementById("count").value;
-			    var thisPrice = prices[what - 1] * countField;
-				confirm("Do you really want to pay " + thisPrice + " BYN?");
+			    if (countField <= 0) {
+			    	return false;
+			    } else {
+			    	var thisPrice = prices[what - 1] * countField;			
+					confirm("Do you really want to pay " + thisPrice + " BYN?");
+			    }
+			    
 			}
 			
 			function displayPrice() {
@@ -121,9 +126,13 @@
 				var what = firstList.options[firstList.selectedIndex].value;
 				var which = secondList.options[secondList.selectedIndex].value;		
 			    var countField = document.getElementById("count").value;
-			    var thisPrice = prices[what - 1] * countField;
-			    document.getElementById('priceField').firstChild.data = thisPrice + '    BYN';
-			    document.getElementById('price').value = thisPrice;
+			    if (countField <= 0) {
+			    	return false;
+			    } else {
+			    	var thisPrice = prices[what - 1] * countField;
+			   		document.getElementById('priceField').firstChild.data = thisPrice + '    BYN';
+			    	document.getElementById('price').value = thisPrice;
+			    }
 			}
 			
 			function viewRequests() {
@@ -134,24 +143,20 @@
 				location.href = '/requestApp/home?id=' + $("#userId").val();
 			}
 			
+			
 			function validate() {
 				if($("#List1").val()==""){
 					alert("Please, choose a product");
 					$("#List1").focus();
 					return false;
-				}
+				}	
 				if($("#List2").val()==""){
 					alert("Please, choose a product type");
 					$("#List2").focus(); 
 					return false;
 				}
-				if($("#count").val()==""){
-					alert("Count error");
-					$("#product").focus();
-					return false;
-				}
-				if($("#price").val()==""){
-					alert("Price error");
+				if ($("#count").val() == "" || +($("#count").val()) <= 0 || $("#price").val() == "" || +($("#price").val()) <= 0) {
+					alert("Count must be positive");
 					$("#price").focus(); 
 					return false;
 				}
