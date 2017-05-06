@@ -19,4 +19,16 @@ public class LoginDelegate {
 	public boolean insertUser(String username, String password) throws SQLException {
 		return userService.insertUser(username, password);
 	}
+	
+	public String getUserRole(String username, String password) throws SQLException {
+		return userService.getUserRole(username, password);
+	}
+	
+	public String getUserRoleById(int id) throws SQLException {
+		return userService.getUserRoleById(id);
+	}
+
+	public int getUserIdByName(String username, String password) {
+		return userService.getUserIdByName(username, password);
+	}
 }

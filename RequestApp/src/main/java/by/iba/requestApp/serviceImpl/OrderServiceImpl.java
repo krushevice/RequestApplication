@@ -23,4 +23,9 @@ public class OrderServiceImpl implements OrderService{
 	public List<RequestBean> selectAllOrders() throws SQLException {
 		return orderDao.selectAllOrders();
 	}
+
+	@Override
+	public List<RequestBean> selectOrdersByUserId(int id) {
+		return orderDao.selectOrdersByUserId(id);
+	}
 }

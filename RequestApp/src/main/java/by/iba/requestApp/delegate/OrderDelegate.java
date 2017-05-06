@@ -25,4 +25,8 @@ public class OrderDelegate {
 	public boolean selectAllOrders() throws SQLException {
 		return orderService.selectAllOrders();
 	}*/
+
+	public List<RequestBean> selectOrdersByUserId(int id) {
+		return orderService.selectOrdersByUserId(id);
+	}
 }

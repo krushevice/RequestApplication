@@ -10,4 +10,6 @@ public interface OrderService {
 	public boolean insertOrder(RequestBean rb) throws SQLException;
 	
 	public List<RequestBean> selectAllOrders() throws SQLException;
+
+	public List<RequestBean> selectOrdersByUserId(int id);
 }

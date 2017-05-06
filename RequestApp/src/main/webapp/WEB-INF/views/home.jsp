@@ -22,10 +22,13 @@
 		<link href="<c:url value="/resources/css/home.css" />" rel="stylesheet">
 		<script type="text/javascript">
 			function createRequest() {
-				location.href = '/requestApp/createReq';
+				location.href = '/requestApp/createReq?id=' + $("#userId").val();
 			}
 			function viewRequests() {
-				location.href = '/requestApp/viewReq';
+				location.href = '/requestApp/viewReq?id=' + $("#userId").val();
+			}
+			function viewAllRequests() {
+				location.href = '/requestApp/viewAllReq?id=' + $("#userId").val();
 			}
 		</script>
 		
@@ -33,21 +36,38 @@
 	</head>
 	<body>
 		<form:form id="Choise">
-			<table align="center" width="400" height="100">
-				<tr>
-					<th id="Greeting" colspan="2">Welcome!<hr id="myHR"></th>
-				</tr>
-				<tr>
-					<td id="asking" colspan="2" align="center" width="130">Please, choose the action!</td>
-				</tr>
-				<tr>
-					<td align="center"><input class="btn" type="button" id="create"
-						onclick="createRequest();" value="Create"></td>
-					<td align="center"><input class="btn" type="button" id="view"
-						onclick="viewRequests();" value="Read"></td>
-				</tr>
-			</table>
+			<input type="hidden" name="role" id="role" value="${role}">
+			<input type="hidden" name="userId" id="userId" value="${id}">
+			<c:if test="${not empty role}">									
+				<table align="center" width="400" height="100">
+					<tr>
+						<th id="Greeting" colspan="3">Welcome!<hr id="myHR"></th>
+					</tr>
+					<tr>
+						<td id="asking" colspan="3" align="center" width="130">Please, choose the action!</td>
+					</tr>
+					<tr>
+						<td align="center"><input class="btn" type="button" id="create"
+							onclick="createRequest();" value="Create"></td>
+						<td align="center"><input class="btn" type="button" id="view"
+							onclick="viewRequests();" value="Read"></td>		
+					
+					<c:choose>
+						  <c:when test="${role=='admin'}">
+						    <td align="center"><input class="btn" type="button" id="viewAll"
+								onclick="viewAllRequests();" value="Read all">
+							</td>
+						  </c:when>
+						  <c:otherwise>
+						    <td/>
+						  </c:otherwise>
+					</c:choose>
+					</tr>
+				</table>
+			</c:if>
+			
 		</form:form>
+		
 		<%@ include file='footer.jsp'%>
 	</body>
 </html>

@@ -11,6 +11,7 @@ import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import by.iba.requestApp.delegate.OrderDelegate;
@@ -23,11 +24,12 @@ public class RequestController {
 	private OrderDelegate orderDelegate;
 	
 	@RequestMapping(value = "/createReq", method=RequestMethod.GET)
-	public ModelAndView createRequest(){
+	public ModelAndView createRequest(@RequestParam int id){
 		System.out.println("createRequest");
 		ModelAndView model = new ModelAndView("createReq");
 		RequestBean requestBean = new RequestBean();
 		model.addObject("requestBean", requestBean);
+		model.addObject("id", id);
 		return model;
 	}	
 
@@ -37,11 +39,22 @@ public class RequestController {
 	}*/
 	
 	@RequestMapping(value = { "/viewReq" }, method = RequestMethod.GET)    
-	public String listUsers(ModelMap model) throws SQLException {
+	public String ordersOneUser(@RequestParam int id, ModelMap model) throws SQLException {
  
-        List<RequestBean> orders = orderDelegate.selectAllOrders();
+        List<RequestBean> orders = orderDelegate.selectOrdersByUserId(id);
         System.out.println("orders = " + orders);
         model.addAttribute("orders", orders);
+        model.addAttribute("id", id);
+        return "viewReq";
+    }
+	
+	@RequestMapping(value = { "/viewAllReq" }, method = RequestMethod.GET)    
+	public String ordersAll(@RequestParam int id, ModelMap model) throws SQLException {
+ 
+        List<RequestBean> orders = orderDelegate.selectAllOrders();
+        System.out.println(" viewReq orders = " + orders);
+        model.addAttribute("orders", orders);
+        model.addAttribute("id", id);
         return "viewReq";
     }
 	
@@ -58,7 +71,6 @@ public class RequestController {
 			    	errorStr += error.getDefaultMessage() + " ,";
 			    }
 			    errorStr=errorStr.substring(0,errorStr.length()-2);
-				System.out.println(errorStr);
 				model = new ModelAndView("createReq");
 				model.addObject("message", errorStr);
 				return model;
@@ -68,6 +80,7 @@ public class RequestController {
 			if(reg){
 				model = new ModelAndView("createReq");
 				model.addObject("message", "Creation complites successfully!");
+				model.addObject("id", reqBean.getUserId());
 			}else{
 				model = new ModelAndView("createReq");
 				model.addObject("message", "Creation error!");
