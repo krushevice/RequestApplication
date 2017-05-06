@@ -13,10 +13,26 @@
 		
 	</head>
 	<body>
-		<div id="mainHeader">
+		<div id="myHeader">
 			<div id="headerText">
-				This is header
+				  <nav>
+					  <input class="button" type="button" id="home" onclick="goHome();" value="Home">
+					  <input class="button" type="button" id="about" onclick="aboutUs();" value="About us"> 
+					  <input class="button" type="button" id="create" onclick="createRequest();" value="Create">
+				 	  <input class="button" type="button" id="view" onclick="viewRequests();" value="Read"> 
+				 	  <input class="button" type="button" id="logOut" onclick="logOut();" value="Log Out">
+				  </nav>
 			</div>		
 		</div>
+		<script type="text/javascript">
+			function viewRequests() {
+				location.href = '/requestApp/viewReq';
+			}
+			
+			function goHome() {
+				location.href = '/requestApp/home';
+			} 
+		</script>			
+			
 	</body>
 </html>

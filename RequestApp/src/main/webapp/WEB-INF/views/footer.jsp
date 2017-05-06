@@ -9,7 +9,7 @@
 	
 	</head>
 	<body>
-		<div id = "mainFooter">
+		<div id = "myFooter">
 			<div id="footerText">
 				This is footer
 			</div>
