@@ -2,6 +2,8 @@ package by.iba.requestApp.viewBean;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
@@ -13,7 +15,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 public class LoginBean {
 
 	@Id
-	//@GeneratedValue(strategy=GenerationType.IDENTITY)
+	//@GeneratedValue(strategy=GenerationType.AUTO)
     @Column(name="id")
 	private int id;
 
@@ -25,8 +27,10 @@ public class LoginBean {
 	@Column(name="password")
 	@NotEmpty(message = "Please enter your password")
 	private String password;
-
 	
+	@Column(name="role")
+	private String role;
+
 	public int getId() {
 		return id;
 	}
@@ -49,5 +53,13 @@ public class LoginBean {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+	
+	public String getRole() {
+		return role;
+	}
+
+	public void setRole(String role) {
+		this.role = role;
 	}
 }

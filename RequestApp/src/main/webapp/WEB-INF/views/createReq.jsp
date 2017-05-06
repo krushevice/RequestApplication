@@ -15,6 +15,7 @@
 			<c:if test="${not empty message}">
 				<div id="message1" class="message1" style="color: red;">${message}</div>
 			</c:if>
+		<input type="hidden" name="userId" id="userId" value="${id}">
 		<table id="Request" align="center">
 			<tr>
 				<th colspan="2">Please, choose something!<hr id="myHR" class="hr"></th>
@@ -135,12 +136,13 @@
 			}
 			
 			function viewRequests() {
-				location.href = '/requestApp/viewReq';
+				location.href = '/requestApp/viewReq?id=' + $("#userId").val();
 			}
 			
 			function goHome() {
-				location.href = '/requestApp/home';
+				location.href = '/requestApp/home?id=' + $("#userId").val();
 			}
+			
 			
 			
 			function validate() {

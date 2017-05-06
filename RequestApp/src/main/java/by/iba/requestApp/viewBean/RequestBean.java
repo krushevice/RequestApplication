@@ -29,7 +29,16 @@ public class RequestBean {
 	@Column(name="price")
 	private int price;
 	
+	@Column(name="user_id")
+	private int userId;
 	
+	
+	public int getUserId() {
+		return userId;
+	}
+	public void setUserId(int userId) {
+		this.userId = userId;
+	}
 	public int getId() {
 		return id;
 	}

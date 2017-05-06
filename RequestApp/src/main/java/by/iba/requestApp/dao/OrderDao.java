@@ -11,4 +11,6 @@ public interface OrderDao {
 	
 	public List<RequestBean> selectAllOrders() throws SQLException;
 
+	public List<RequestBean> selectOrdersByUserId(int id);
+
 }

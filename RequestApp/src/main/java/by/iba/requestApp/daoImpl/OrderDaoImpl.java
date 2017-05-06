@@ -39,9 +39,7 @@ public class OrderDaoImpl implements OrderDao{
 		}		
 	    //System.out.println("id=" + id);
 	    rb.setId(id);
-	    System.out.println("rb="+rb);
 	    session.save(rb);
-	    System.out.println("end");
 	  
 	    //session.flush();
 	  tx.commit();
@@ -65,9 +63,7 @@ public class OrderDaoImpl implements OrderDao{
 		}		
 	    //System.out.println("id=" + id);
 	    rb.setId(id);
-	    System.out.println("rb="+rb);
 	    session.save(rb);
-	    System.out.println("end");
 	  
 	    //session.flush();
 	    tx.commit();
@@ -99,6 +95,18 @@ public class OrderDaoImpl implements OrderDao{
 	public void setSessionFactory(SessionFactory sessionFactory) {
 		this.sessionFactory = sessionFactory;
 	}*/
+
+	@Override
+	public List<RequestBean> selectOrdersByUserId(int id) {
+		Session session = sessionFactory.openSession();		
+		Transaction tx = session.beginTransaction();
+		Query query = session.createQuery("from RequestBean where user_id =:id");
+		query.setParameter("id", id);
+		List list = query.list();
+		tx.commit();
+		session.close();
+		return list;
+	}
 	
 	
 	/*DataSource dataSource;

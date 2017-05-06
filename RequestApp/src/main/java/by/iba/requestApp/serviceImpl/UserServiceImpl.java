@@ -22,5 +22,17 @@ public class UserServiceImpl implements UserService {
 	public boolean insertUser(String username, String password) throws SQLException {
 		return userDao.insertUser(username, password);	
 	}
+	@Override
+	public String getUserRole(String username, String password) {
+		return userDao.getUserRole(username, password);	
+	}
+	@Override
+	public String getUserRoleById(int id) {
+		return userDao.getUserRoleById(id);
+	}
+	@Override
+	public int getUserIdByName(String username, String password) {
+		return userDao.getUserIdByName(username, password);	
+	}
 
 }

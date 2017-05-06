@@ -37,9 +37,12 @@ public class LoginController{
 		try{
 			boolean isValidUser = loginDelegate.isValidUser(loginBean.getUsername(), loginBean.getPassword());
 			if(isValidUser){
-				System.out.println("User Login Successful");
+				int id = loginDelegate.getUserIdByName(loginBean.getUsername(), loginBean.getPassword());
+				String role = loginDelegate.getUserRoleById(id);
 				model = new ModelAndView("home");
 				model.addObject("username", loginBean.getUsername());
+				model.addObject("role", role);
+				model.addObject("id", id);
 			}else{
 				model = new ModelAndView("loginB");
 				model.addObject("message", "Name or password is incorrect!");

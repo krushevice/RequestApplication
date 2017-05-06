@@ -14,6 +14,7 @@
 			<c:if test="${not empty message}">
 				<div id="message1" class="message1" style="color: red;">${message}</div>
 			</c:if>
+		<input type="hidden" name="userId" id="userId" value="${id}">
 		<table id="Read" align="center">
 			<tr>
 				<th colspan="4">That's all you've ordered<hr class="hr"></th>
@@ -57,7 +58,7 @@
 	<%@ include file='footer.jsp'%>
 	<script type="text/javascript">
 			function createRequest() {
-				location.href = '/requestApp/createReq';
+				location.href = '/requestApp/createReq?id=' + $("#userId").val();
 			}
 	</script>	
 </body>
