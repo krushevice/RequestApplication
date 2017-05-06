@@ -39,30 +39,37 @@
 			<input type="hidden" name="role" id="role" value="${role}">
 			<input type="hidden" name="userId" id="userId" value="${id}">
 			<c:if test="${not empty role}">									
-				<table align="center" width="400" height="100">
+				<table align="center" width="450" height="100">
 					<tr>
-						<th id="Greeting" colspan="3">Welcome!<hr id="myHR"></th>
+						<th id="Greeting" colspan="3">Welcome!<hr class="myHR"></th>
 					</tr>
 					<tr>
 						<td id="asking" colspan="3" align="center" width="130">Please, choose the action!</td>
 					</tr>
 					<tr>
-						<td align="center"><input class="btn" type="button" id="create"
-							onclick="createRequest();" value="Create"></td>
-						<td align="center"><input class="btn" type="button" id="view"
-							onclick="viewRequests();" value="Read"></td>		
-					
+						<td id="buttons" colspan="2" align="center">
+						<input class="btn" type="button" id="create" onclick="createRequest();" value="Create">						
+						<input class="btn" type="button" id="view" onclick="viewRequests();" value="Read">				
+						<hr class="myHR">
+						</td>
+					</tr>
 					<c:choose>
 						  <c:when test="${role=='admin'}">
-						    <td align="center"><input class="btn" type="button" id="viewAll"
-								onclick="viewAllRequests();" value="Read all">
-							</td>
+						  	<tr>
+						    	<td id="simpleString" colspan="2" align="center">
+						    		Congratulations, you are admin, so you can
+						    	</td>
+						    </tr>
+						    <tr>
+						    	<td colspan="2" align="center">
+						    		<input class="btn" type="button" id="viewAll" onclick="viewAllRequests();" value="Read all">
+								</td>
+							</tr>
 						  </c:when>
 						  <c:otherwise>
 						    <td/>
 						  </c:otherwise>
 					</c:choose>
-					</tr>
 				</table>
 			</c:if>
 			

@@ -13,25 +13,31 @@
 		
 	</head>
 	<body>
+		<input type="hidden" name="userId" id="userId" value="${id}">
 		<div id="myHeader">
 			<div id="headerText">
-				  <nav>
-					  <input class="button" type="button" id="home" onclick="goHome();" value="Home">
-					  <input class="button" type="button" id="about" onclick="aboutUs();" value="About us"> 
+				  <nav>				  
+					  <input class="button" type="button" id="home" onclick="goHome();" value="Home">					  
 					  <input class="button" type="button" id="create" onclick="createRequest();" value="Create">
-				 	  <input class="button" type="button" id="view" onclick="viewRequests();" value="Read"> 
+				 	  <input class="button" type="button" id="view" onclick="viewRequests();" value="Read">
+				 	  <input class="button" type="button" id="about" onclick="aboutUs();" value="About us">  
 				 	  <input class="button" type="button" id="logOut" onclick="logOut();" value="Log Out">
 				  </nav>
 			</div>		
 		</div>
 		<script type="text/javascript">
-			function viewRequests() {
-				location.href = '/requestApp/viewReq';
-			}
-			
-			function goHome() {
-				location.href = '/requestApp/home';
-			} 
+		function viewRequests() {
+			location.href = '/requestApp/viewReq?id=' + $("#userId").val();
+		}
+		
+		function goHome() {
+			location.href = '/requestApp/home?id=' + $("#userId").val();
+		} 
+		
+		function createRequest() {
+			location.href = '/requestApp/createReq?id=' + $("#userId").val();
+		}
+
 		</script>			
 			
 	</body>

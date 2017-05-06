@@ -11,10 +11,11 @@
 		<script type="text/javascript" src="resources/js/linkedselect.js"></script>
 	</head>
 	<body>
-		<form:form id="MainForm" action="createReq" name="reqBean"  method="post" onsubmit="return validate()">
+		<form:form id="MainForm" action="createReq" name="reqBean" method="post" onsubmit="return validate()">
 			<c:if test="${not empty message}">
 				<div id="message1" class="message1" style="color: red;">${message}</div>
 			</c:if>
+		<input type="hidden" name="userId" id="userId" value="${id}">	
 		<table id="Request" align="center">
 			<tr>
 				<th colspan="2">Please, choose something!<hr id="myHR" class="hr"></th>
@@ -49,9 +50,9 @@
 				</td>
 			</tr>
 			<tr class="Buttons">
-				<td  colspan="2" align="center"><input class="btn" type="button" id="cancel"
-					onclick="goHome();" value="Cancel"><input class="btn" type="submit" id="submit"
-					onclick="submitRequest();" value="Submit">
+				<td  colspan="2" align="center">
+					<input class="btn" type="button" id="cancel" onclick="goHome();" value="Cancel">
+					<input class="btn" type="submit" id="submit" value="Submit">
 					<hr id="myHR" class="hr">
 				</td>
 			</tr>
@@ -103,22 +104,6 @@
 	
 			
 			var prices = [10, 7, 4, 2];
-       
-			function submitRequest() {	
-				var firstList = document.getElementById("List1");
-				var secondList = document.getElementById("List2");
-				var what = firstList.options[firstList.selectedIndex].value;
-				var which = secondList.options[secondList.selectedIndex].value;		
-			    var countField = document.getElementById("count").value;
-			    if (countField <= 0) {
-			    	return false;
-			    } else {
-			    	var thisPrice = prices[what - 1] * countField;			
-					if(confirm("Do you really want to pay " + thisPrice + " BYN?"));
-					else return false;
-			    }
-			    
-			}
 			
 			function displayPrice() {
 				var firstList = document.getElementById("List1");
@@ -155,6 +140,20 @@
 					$("#price").focus(); 
 					return false;
 				}
+				var firstList = document.getElementById("List1");
+				var secondList = document.getElementById("List2");
+				var what = firstList.options[firstList.selectedIndex].value;
+				var which = secondList.options[secondList.selectedIndex].value;		
+			    var countField = document.getElementById("count").value;
+			    if (countField <= 0) {
+			    	return false;
+			    } else {
+			    	var thisPrice = prices[what - 1] * countField;			
+					if(!confirm("Do you really want to pay " + thisPrice + " BYN?")) {
+						alert ("Ok...:(");
+						return false;
+					}
+			    }
 				return true;
 			}
 	</script>
