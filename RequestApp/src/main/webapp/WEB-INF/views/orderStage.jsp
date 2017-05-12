@@ -14,9 +14,10 @@
 			<c:if test="${not empty message}">
 				<div id="message1" class="message1" style="color: red;">${message}</div>
 			</c:if>
-		<input type="hidden" name="userId" id="userId" value="${id}">
+		<input type="text" name="userId" id="userId" value="${id}">
+		<input type="text" name="orderId" id="orderId" value="${orderId}">
 		<table id="Read" align="center">
-			<tr>
+<!-- 			 <tr>
 				<th colspan="5">That's all you've ordered<hr class="hr"></th>
 			</tr>			
 			<tr class="bg">
@@ -25,14 +26,13 @@
         		<td>Count</td>
         		<td>Price</td>
         		<td>Status</td>
-       		</tr>
-			<c:forEach items="${orders}" var="order">
+       		</tr> -->
+			<c:forEach items="${stages}" var="stage">
                 <tr class="canChoose">
-                    <td>${order.product.productName}</td>
-                    <td>${order.productType.productTypeName}</td>
-                    <td>${order.count}</td>
-                    <td>${order.price} BYN</td>
-                    <td onclick="toStage('${order.id}')">
+                    <td>${stage.stageOne}</td>
+                    <td>${stage.stageTwo}</td>
+                    <td>${stage.stageThree}</td>
+                    <%-- <td onclick="toStage('${order.id}')">
 	                    <c:choose>
 						    <c:when test="${order.status=='1'}">
 						        Complite
@@ -41,19 +41,11 @@
 						        In progress
 						    </c:otherwise>
 						</c:choose>
-					</td>
+					</td> --%>
                 </tr>
             </c:forEach>
-			<%-- <c:forEach items="${orders}" var="order">
-                <tr class="canChoose">
-                	<td>${order.id}</td>
-                    <td>${order.name}</td>
-                    <td>${order.product_type_name}</td>
-                    <td>${order.count}</td>
-                    <td>${order.price}</td>
-                </tr>
-            </c:forEach> --%>
-			<tr class="noBorder">
+
+			<%--<tr class="noBorder">
 				<td colspan="5" id="simpleString" align="center">	
 					<hr class="hr">			
 					To create new request click here
@@ -63,17 +55,17 @@
 				<td class="noBorder" colspan="5" align="center">
 					<input class="btn" type="button" id="create" onclick="createRequest();" value="Create">		
 				</td>
-			</tr>
+			</tr> --%>
 		</table>
 	</form:form>
 	<%@ include file='footer.jsp'%>
 	<script type="text/javascript">
-			function createRequest() {
+			/* function createRequest() {
 				location.href = '/requestApp/createReq?id=' + $("#userId").val();
 			}
 			function toStage(id) {
 				location.href = '/requestApp/orderStage?id=' + $("#userId").val() + "&orderId="+id;
-			}
+			} */
 	</script>	
 </body>
 </html>

@@ -7,7 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import by.iba.requestApp.service.OrderService;
+import by.iba.requestApp.viewBean.OrderBean;
 import by.iba.requestApp.viewBean.RequestBean;
+import by.iba.requestApp.viewBean.StageBean;
 
 @Component
 public class OrderDelegate {
@@ -18,7 +20,7 @@ public class OrderDelegate {
 		return orderService.insertOrder(rb);
 	}
 	
-	public List<RequestBean> selectAllOrders() throws SQLException {
+	public List<OrderBean> selectAllOrders() throws SQLException {
 		return orderService.selectAllOrders();
 	}
 	/*
@@ -26,7 +28,11 @@ public class OrderDelegate {
 		return orderService.selectAllOrders();
 	}*/
 
-	public List<RequestBean> selectOrdersByUserId(int id) {
+	public List<OrderBean> selectOrdersByUserId(int id) {
 		return orderService.selectOrdersByUserId(id);
+	}
+
+	public boolean insertOrderStages(RequestBean rb) {
+		return orderService.insertOrderStages(rb);
 	}
 }

@@ -1,9 +1,14 @@
 package by.iba.requestApp.viewBean;
 
+
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 
 @Entity
@@ -32,7 +37,25 @@ public class RequestBean {
 	@Column(name="user_id")
 	private int userId;
 	
+	@Column(name="status")
+	private int status;
 	
+	@Column(name="date")
+	@Temporal(TemporalType.DATE)
+	private Date date;// = new Date();
+	
+	public Date getDate() {
+		return date;
+	}
+	public void setDate(Date date) {
+		this.date = date;
+	}		
+	public int getStatus() {
+		return status;
+	}
+	public void setStatus(int status) {
+		this.status = status;
+	}
 	public int getUserId() {
 		return userId;
 	}
@@ -72,7 +95,7 @@ public class RequestBean {
 	@Override
 	public String toString() {
 		return "RequestBean [id=" + id + ", product=" + product + ", productType=" + productType + ", count=" + count
-				+ ", price=" + price + "]";
+				+ ", price=" + price + ", userId=" + userId + ", status=" + status + ", date=" + date + "]";
 	}	
 
 }

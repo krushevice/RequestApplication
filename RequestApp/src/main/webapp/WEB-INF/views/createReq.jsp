@@ -1,21 +1,21 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <%@ include file='header.jsp'%>
 	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<link href="<c:url value="/resources/css/reqest.css" />" rel="stylesheet">
 		<script type="text/javascript" src="resources/js/linkedselect.js"></script>
 	</head>
 	<body>
-		<form:form rype="submit" id="MainForm" action="createReq" name="reqBean" method="post" onsubmit="return validate()">
+		<form:form id="MainForm" action="createReq" name="reqBean" method="post" onsubmit="return validate()">
 			<c:if test="${not empty message}">
 				<div id="message1" class="message1" style="color: red;">${message}</div>
 			</c:if>
-		<input type="hidden" name="userId" id="userId" value="${id}">	
+		<input type="hidden" name="userId" id="userId" value="${id}">
 		<table id="Request" align="center">
 			<tr>
 				<th colspan="2">Please, choose something!<hr id="myHR" class="hr"></th>
@@ -80,23 +80,23 @@
 					'5':'Caramel'
 				},
 				'2':{
-					'1':'Cranberry',
-					'2':'Cherry',
-					'3':'Blueberry',
-					'4':'Banana'	
+					'6':'Cranberry',
+					'7':'Cherry',
+					'8':'Blueberry',
+					'9':'Banana'	
 				},
 				'3':{
-					'1':'Oat',
-					'2':'Rice',
-					'3':'Wheaten'
+					'10':'Oat',
+					'11':'Rice',
+					'12':'Wheaten'
 				},
 				'4':{
-					'1':'Mint',
-					'2':'Chocolate',
-					'3':'Vanilla',
-					'4':'Cherry',
-					'5':'Raspberries',
-					'6':'Coconut'
+					'13':'Mint',
+					'1':'Chocolate',
+					'2':'Vanilla',
+					'7':'Cherry',
+					'14':'Raspberries',
+					'15':'Coconut'
 					
 				}
 			}
@@ -155,9 +155,6 @@
 					}
 			    }
 				return true;
-			}
-			function createReq() {
-				document.getElementById('theForm').submit();
 			}
 	</script>
 	</form:form>

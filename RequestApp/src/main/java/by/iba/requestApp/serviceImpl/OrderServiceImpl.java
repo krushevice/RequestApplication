@@ -8,7 +8,9 @@ import org.springframework.stereotype.Service;
 
 import by.iba.requestApp.dao.OrderDao;
 import by.iba.requestApp.service.OrderService;
+import by.iba.requestApp.viewBean.OrderBean;
 import by.iba.requestApp.viewBean.RequestBean;
+import by.iba.requestApp.viewBean.StageBean;
 
 @Service
 public class OrderServiceImpl implements OrderService{
@@ -20,12 +22,17 @@ public class OrderServiceImpl implements OrderService{
 		return orderDao.insertOrder(rb);	
 	}
 	
-	public List<RequestBean> selectAllOrders() throws SQLException {
+	public List<OrderBean> selectAllOrders() throws SQLException {
 		return orderDao.selectAllOrders();
 	}
 
 	@Override
-	public List<RequestBean> selectOrdersByUserId(int id) {
+	public List<OrderBean> selectOrdersByUserId(int id) {
 		return orderDao.selectOrdersByUserId(id);
+	}
+
+	@Override
+	public boolean insertOrderStages(RequestBean rb) {
+		return orderDao.insertOrderStages(rb);
 	}
 }

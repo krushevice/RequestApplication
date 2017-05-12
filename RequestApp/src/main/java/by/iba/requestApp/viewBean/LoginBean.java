@@ -21,11 +21,12 @@ public class LoginBean {
 
 	@Column(name="username")
 	@NotEmpty(message = "Please enter your name")
-    @Size(min = 3, max = 20, message = "Your name must be between 3 and 20 characters.")
+    @Size(min = 3, max = 20, message = "Your name must be between 3 and 20 characters")
 	private String username;
 	
 	@Column(name="password")
 	@NotEmpty(message = "Please enter your password")
+	@Size(min = 5, max = 20, message = "Your password must be between 5 and 20 characters.")
 	private String password;
 	
 	@Column(name="role")

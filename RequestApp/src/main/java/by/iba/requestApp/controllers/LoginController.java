@@ -1,11 +1,8 @@
 package by.iba.requestApp.controllers;
 
 import java.util.List;
-import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
-
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,7 +12,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.support.RequestContextUtils;
 
 import by.iba.requestApp.delegate.LoginDelegate;
 import by.iba.requestApp.viewBean.LoginBean;
@@ -35,7 +31,6 @@ public class LoginController{
 		model.addObject("loginBean", loginBean);
 		return model;
 	}
-	
 	@RequestMapping(value="/login**",method=RequestMethod.POST)
 	public ModelAndView executeLogin(@ModelAttribute("loginBean")LoginBean loginBean){
 		ModelAndView model= null;
@@ -58,7 +53,7 @@ public class LoginController{
 		}
 
 		return model;
-	}
+	}	
 
 	@RequestMapping(value="/logout",method=RequestMethod.GET)
 	public ModelAndView displayLogout(){

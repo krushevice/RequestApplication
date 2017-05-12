@@ -43,6 +43,10 @@
 
         <mapping class="by.iba.requestApp.viewBean.LoginBean"/>
         <mapping class="by.iba.requestApp.viewBean.RequestBean"/>
+        <mapping class="by.iba.requestApp.viewBean.ProductBean"/>
+        <mapping class="by.iba.requestApp.viewBean.ProductTypeBean"/>
+        <mapping class="by.iba.requestApp.viewBean.OrderBean"/>
+        <mapping class="by.iba.requestApp.viewBean.StageBean"/>
 
         <!-- <property name="hbm2ddl.auto">update</property> -->
     </session-factory>

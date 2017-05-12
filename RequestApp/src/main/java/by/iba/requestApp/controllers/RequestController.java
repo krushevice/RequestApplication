@@ -11,7 +11,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -22,6 +21,7 @@ import org.springframework.web.servlet.support.RequestContextUtils;
 import org.springframework.web.servlet.view.RedirectView;
 
 import by.iba.requestApp.delegate.OrderDelegate;
+import by.iba.requestApp.viewBean.OrderBean;
 import by.iba.requestApp.viewBean.RequestBean;
 
 @Controller
@@ -38,7 +38,7 @@ public class RequestController {
 	@RequestMapping(value = { "/viewReq" }, method = RequestMethod.GET)    
 	public String ordersOneUser(@RequestParam int id, ModelMap model) throws SQLException {
  
-        List<RequestBean> orders = orderDelegate.selectOrdersByUserId(id);
+        List<OrderBean> orders = orderDelegate.selectOrdersByUserId(id);
         System.out.println("orders = " + orders);
         model.addAttribute("orders", orders);
         model.addAttribute("id", id);
@@ -48,7 +48,7 @@ public class RequestController {
 	@RequestMapping(value = { "/viewAllReq" }, method = RequestMethod.GET)    
 	public String ordersAll(@RequestParam int id, ModelMap model) throws SQLException {
  
-        List<RequestBean> orders = orderDelegate.selectAllOrders();
+        List<OrderBean> orders = orderDelegate.selectAllOrders();
         System.out.println(" viewReq orders = " + orders);
         model.addAttribute("orders", orders);
         model.addAttribute("id", id);
