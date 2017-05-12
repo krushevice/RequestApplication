@@ -1,0 +1,79 @@
+html, body {
+	background-color:#F0F8FF;
+}
+#Choise {
+	width:70%;
+	height:70%;
+	margin-top: 10%;
+	margin-left:15%;
+	margin-right:15%;
+	margin-bottom:20%;
+	padding-bottom:20px;	
+	color: #00415d;
+	border-color: #ccc;
+	background-color: #fff;
+	-webkit-box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.2);
+	-moz-box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.2);
+	box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.2);
+	overflow: auto;
+}
+.myHR {
+	margin-top:10px;
+	margin-bottom:0px;
+	clear:both;
+	border:0;
+	height:1px;
+	background-image:-webkit-linear-gradient(left,rgba(0, 0, 0, 0),rgba(0, 0, 0, 0.15),rgba(0, 0, 0, 0));
+	background-image:-moz-linear-gradient(left,rgba(0,0,0,0),rgba(0,0,0,0.15),rgba(0,0,0,0));
+	background-image:-ms-linear-gradient(left,rgba(0,0,0,0),rgba(0,0,0,0.15),rgba(0,0,0,0));
+	background-image:-o-linear-gradient(left,rgba(0,0,0,0),rgba(0,0,0,0.15),rgba(0,0,0,0));
+}
+.text{
+	margin-top:30px;
+	margin-bottom:30px;
+}
+#simpleString {
+	padding-top:20px;
+	color: #00415d;
+	background-color: #fff;
+	border-color: #fff;
+	text-align:center;
+}
+#Greeting {
+	width:"130";
+	padding-top:20px;
+	padding-bottom:20px;
+	color: #00415d;
+	background-color: #fff;
+	border-color: #fff;
+	text-align:center;
+}
+#asking {
+	padding:10px 20px 20px 10px;
+}
+.btn {
+	background-color: #59B2E0;
+	outline: none;
+	color: #fff;
+	font-size: 14px;
+	height: auto;
+	font-weight: normal;
+	margin-top:10px;
+	margin-bottom:20px;
+	margin-left:30px;
+	margin-right:30px;
+	text-transform: uppercase;
+	border-color: #59B2E6;
+}
+.btn:hover,
+.btn:focus {
+	color: #fff;
+	background-color: #53A3CD;
+	border-color: #53A3CD;
+}
+#buttons {
+	margin-top:20px;
+	margin-bottom:20px;
+	margim-left:20px;
+	margin-right:20px;
+}

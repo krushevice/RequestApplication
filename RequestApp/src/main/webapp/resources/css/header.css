@@ -1,0 +1,30 @@
+#myHeader {
+	background-color: #F0F8FF;
+	height: 50px;
+}
+	
+#headerText {
+	text-align: center;
+}
+
+.button {
+	background-color: #F0F8FF;
+	outline: none;
+	color: #00415d;
+	font-size: 14px;
+	height: auto;
+	width: 150px;
+	margin-bottom:20px;
+	font-weight: normal;
+	padding: 20px, 10px, 20px, 10px;
+	text-transform: uppercase;
+	border-style: none;
+	height: 50px;
+	border-radius: 3px;
+}
+.button:hover,
+.button:focus {
+	color: #fff;
+	background-color: #59B2E0;
+	border-color: #59B2E0;
+}
