@@ -11,7 +11,7 @@
 		<script type="text/javascript" src="resources/js/linkedselect.js"></script>
 	</head>
 	<body>
-		<form:form id="MainForm" action="createReq" name="reqBean" method="post" onsubmit="return validate()">
+		<form:form rype="submit" id="MainForm" action="createReq" name="reqBean" method="post" onsubmit="return validate()">
 			<c:if test="${not empty message}">
 				<div id="message1" class="message1" style="color: red;">${message}</div>
 			</c:if>
@@ -155,6 +155,9 @@
 					}
 			    }
 				return true;
+			}
+			function createReq() {
+				document.getElementById('theForm').submit();
 			}
 	</script>
 	</form:form>
