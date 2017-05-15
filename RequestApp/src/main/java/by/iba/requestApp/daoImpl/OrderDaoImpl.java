@@ -99,44 +99,11 @@ public class OrderDaoImpl implements OrderDao{
 	    return true;
 	}
 	
-	
+	@Override
 	public List<OrderBean> selectAllOrders(){
 		
 		Session session = sessionFactory.openSession();		
 		Transaction tx = session.beginTransaction();
-		
-		/*String querySQL = "select a.id, a.product_id, b.name, a.product_type, c.product_type_name, a.count, a.price "
-				+ "from orders a "
-				+ "join product_name b on a.product_id = b.id "
-				+ "join product_type c on a.product_id=c.product_id and a.product_type=c.product_type";
-		Query query = session.createQuery(querySQL);*/
-		
-		
-		
-		
-		
-		/*Query query = session.createQuery("from RequestBean");
-		List list = query.list();
-		System.out.println("list = " + list);*/
-		
-		
-		
-		
-		
-		
-		/*String querySQL = "select a.id, a.product_id, b.name, a.product_type, c.product_type_name, a.count, a.price "
-				+ "from orders a "
-				+ "join product_name b on a.product_id = b.id "
-				+ "join product_type c on a.product_id=c.product_id and a.product_type=c.product_type";
-		SQLQuery query = session.createSQLQuery(querySQL);
-		List list = query.list();*/
-		
-		
-		/*List<RequestBean> ordersList = session.createQuery("from RequestBean r LEFT JOIN ProductBean p ON r.product_id = p.id").list();
-
-	    for (RequestBean c : ordersList) {
-	    	System.out.println("ordersList::" + c);
-	    }*/
 		
 		List<OrderBean> requestsList = (List<OrderBean>)session.createQuery("from OrderBean").list();
         for(OrderBean s: requestsList){
@@ -171,7 +138,7 @@ public class OrderDaoImpl implements OrderDao{
 	@Override
 	public StageBean getOrderStages(RequestBean rb) {
 		StageBean st = new StageBean();
-		st.setId(rb.getId());
+		st.setOrderId(rb.getId());
 		st.setStageOne(1);
 		if (rb.getCount()>10 || rb.getPrice()>100){
 			st.setStageTwo(1);
@@ -186,6 +153,26 @@ public class OrderDaoImpl implements OrderDao{
 	public boolean insertOrderStages(RequestBean rb) {
 		// TODO Auto-generated method stub
 		return false;
+	}
+
+	@Override
+	public void deleteOrder(int orderId) {		
+		Session session = sessionFactory.openSession();
+		Transaction tx = session.beginTransaction();    
+		Query query = session.createQuery("delete OrderBean where id = :id");
+		query.setParameter("id", orderId);
+		int result = query.executeUpdate();
+
+		query = session.createQuery("delete StageBean where id = :id");
+		query.setParameter("id", orderId);
+		int result2 = query.executeUpdate();
+		
+		if(result!=1 || result2!=1){
+			tx.rollback();
+		}else{		
+			tx.commit();
+		}
+		session.close();
 	}
 
 }

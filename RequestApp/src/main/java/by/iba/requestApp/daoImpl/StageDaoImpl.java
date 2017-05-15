@@ -39,9 +39,59 @@ public class StageDaoImpl implements StageDao{
 	}
 
 	@Override
-	public void updateOrderStage(int orderId) {
-		// TODO Auto-generated method stub
+	public void updateOrderStage(int orderId, int stage) {
+		Session session = sessionFactory.getCurrentSession();
+		Transaction tx = session.beginTransaction();
+	    session.update("StageBean" );//createQuery("from StageBean where id = :id");
+		tx.commit();
+		session.close();
+
+	}
+
+	@Override
+	public void updateOrderStage(StageBean stageBean) {
+		Session session = sessionFactory.getCurrentSession();
+		Transaction tx = session.beginTransaction();
+		System.out.println("update1");
+	    session.update(stageBean);//createQuery("from StageBean where id = :id");
+		System.out.println("update2");
+	    tx.commit();
+		session.close();
+	}
+
+	@Override
+	public boolean isComplete(int orderId) {
+		Session session = sessionFactory.getCurrentSession();
+		Transaction tx = session.beginTransaction();
+	    Query query = session.createQuery("from StageBean sb where sb.id = :id "
+	    		+ "and (sb.stageOne = 1 or sb.stageTwo = 1 or sb.stageThree = 1)");
+		query.setParameter("id", orderId);
+		List list = query.list();
+		tx.commit();
+		session.close();
 		
+		if (list.isEmpty()){
+			return true;
+		}
+		return false;
+	}
+
+	@Override
+	public void finishOrder(int orderId) {
+		Session session = sessionFactory.getCurrentSession();
+		Transaction tx = session.beginTransaction();
+		Query query = session.createQuery("update OrderBean set status = 1" +
+				" where id = :id");
+		query.setParameter("id", orderId);
+		int result = query.executeUpdate();
+		if(result!=1){
+			System.out.println("rollback");
+			tx.rollback();
+		}else{
+			System.out.println("commit");
+		    tx.commit();
+		}
+		session.close();
 	}
 
 }

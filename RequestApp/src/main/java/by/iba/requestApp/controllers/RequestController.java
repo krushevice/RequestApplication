@@ -104,5 +104,12 @@ public class RequestController {
 		 model.addObject("id", id);
 		 return model;
 	}
+	 
+	 @RequestMapping(value = "/deleteOrder", method=RequestMethod.POST)
+	 public String deleteOrder(int userId, int orderId){
+		 System.out.println("deleteOrder");
+		 orderDelegate.deleteOrder(orderId);
+		 return "redirect:viewAllReq?id="+userId;
+	}
 }
 

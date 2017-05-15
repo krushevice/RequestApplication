@@ -11,8 +11,8 @@ public class StageBean {
 
 	@Id
 	//@GeneratedValue(strategy=GenerationType.AUTO)
-    @Column(name="id")
-	private int id;
+    @Column(name="order_id")
+	private int orderId;
 	
 	@Column(name="stage1")
 	private int stageOne;
@@ -23,12 +23,12 @@ public class StageBean {
 	@Column(name="stage3")
 	private int stageThree;
 
-	public int getId() {
-		return id;
+	public int getOrderId() {
+		return orderId;
 	}
 
-	public void setId(int id) {
-		this.id = id;
+	public void setOrderId(int id) {
+		this.orderId = id;
 	}
 
 	public int getStageOne() {
@@ -57,7 +57,7 @@ public class StageBean {
 
 	@Override
 	public String toString() {
-		return "StageBean [id=" + id + ", stageOne=" + stageOne + ", stageTwo=" + stageTwo + ", stageThree="
+		return "StageBean [id=" + orderId + ", stageOne=" + stageOne + ", stageTwo=" + stageTwo + ", stageThree="
 				+ stageThree + "]";
 	}
 	

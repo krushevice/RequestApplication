@@ -19,4 +19,6 @@ public interface OrderDao {
 
 	StageBean getOrderStages(RequestBean rb);
 
+	public void deleteOrder(int orderId);
+
 }

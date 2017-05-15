@@ -26,8 +26,23 @@ public class StageServiceImpl implements StageService{
 	}
 
 	@Override
-	public void updateOrderStage(int orderId) {
-		stageDao.updateOrderStage(orderId);
+	public void updateOrderStage(int orderId, int stage) {
+		stageDao.updateOrderStage(orderId, stage);
+	}
+
+	@Override
+	public void updateOrderStage(StageBean stageBean) {
+		stageDao.updateOrderStage(stageBean);
+	}
+
+	@Override
+	public boolean isComplete(int orderId) {
+		return stageDao.isComplete(orderId);
+	}
+
+	@Override
+	public void finishOrder(int orderId) {
+		stageDao.finishOrder(orderId);
 	}
 
 }
