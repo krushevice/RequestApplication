@@ -54,6 +54,11 @@ public class RequestController {
         model.addAttribute("id", id);
         return "viewReq";
     }
+	
+	@RequestMapping(value = "/downloadExcel", method = RequestMethod.GET)
+	public ModelAndView downloadExcel() {
+		return new ModelAndView("excelView");
+	}
 	 
 	 @RequestMapping(value = "/createReq", method=RequestMethod.POST)
 	 public ModelAndView insertOrder(@ModelAttribute("reqBean")RequestBean reqBean, BindingResult result, RedirectAttributes redirectAttributes){

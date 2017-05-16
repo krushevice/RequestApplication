@@ -17,7 +17,7 @@
 		<input type="hidden" name="userId" id="userId" value="${id}">
 		<table id="Read" align="center">
 			<tr>
-				<th colspan="6">That's all you've ordered<hr class="hr"></th>
+				<th colspan="7">That's all you've ordered<hr class="hr"></th>
 			</tr>			
 			<tr class="bg">
 				<td>Order №</td>
@@ -26,6 +26,7 @@
         		<td>Count</td>
         		<td>Price</td>
         		<td>Status</td>
+        		<td>Delete</td>
        		</tr>
 			<c:forEach items="${orders}" var="order">
                 <tr class="canChoose">
@@ -45,7 +46,7 @@
 						</c:choose>
 					</td>
 					<td>
-						<input type="button" onclick="delOrder('${order.id}');" value="Del"/>
+						<input type="button" onclick="delOrder('${order.id}');" value="Delete"/>
 					</td>
                 </tr>
             </c:forEach>
@@ -59,14 +60,15 @@
                 </tr>
             </c:forEach> --%>
 			<tr class="noBorder">
-				<td colspan="6" id="simpleString" align="center">	
+				<td colspan="7" id="simpleString" align="center">	
 					<hr class="hr">			
-					To create new request click here
+					Click here to create new request or download .xls file
 				</td>
 			</tr>
 			<tr class="Buttons">
-				<td class="noBorder" colspan="6" align="center">
-					<input class="btn" type="button" id="create" onclick="createRequest();" value="Create">		
+				<td class="noBorder" colspan="7" align="center">
+					<input class="btn" type="button" id="create" onclick="createRequest();" value="Create">	
+					<input class="btn" type="button" id="download" onclick="location.href='downloadExcel'" value="Download">
 				</td>
 			</tr>
 		</table>
