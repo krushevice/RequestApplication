@@ -41,7 +41,7 @@ public class RequestController {
         List<OrderBean> orders = orderDelegate.selectOrdersByUserId(id);
         System.out.println("orders = " + orders);
         model.addAttribute("orders", orders);
-        model.addAttribute("id", id);
+        model.addAttribute("id", id);        
         return "viewReq";
     }
 	
@@ -56,8 +56,12 @@ public class RequestController {
     }
 	
 	@RequestMapping(value = "/downloadExcel", method = RequestMethod.GET)
-	public ModelAndView downloadExcel() {
-		return new ModelAndView("excelView");
+	public ModelAndView downloadExcel(@RequestParam int id, ModelMap model) {
+        List<OrderBean> orders = orderDelegate.selectOrdersByUserId(id);
+        System.out.println("orders = " + orders);
+        model.addAttribute("orders", orders);
+        model.addAttribute("id", id);
+		return new ModelAndView("excelView", model);
 	}
 	 
 	 @RequestMapping(value = "/createReq", method=RequestMethod.POST)

@@ -68,7 +68,7 @@
 			<tr class="Buttons">
 				<td class="noBorder" colspan="7" align="center">
 					<input class="btn" type="button" id="create" onclick="createRequest();" value="Create">	
-					<input class="btn" type="button" id="download" onclick="location.href='downloadExcel'" value="Download">
+					<input class="btn" type="button" id="download" onclick="downloadExcel();" value="Download">
 				</td>
 			</tr>
 		</table>
@@ -78,6 +78,9 @@
 	<script type="text/javascript">
 			function createRequest() {
 				location.href = '/requestApp/createReq?id=' + $("#userId").val();
+			}
+			function downloadExcel() {
+				location.href = 'downloadExcel?id=' + $("#userId").val();
 			}
 			function toStage(id) {
 				location.href = '/requestApp/orderStage?id=' + $("#userId").val() + "&orderId="+id;
