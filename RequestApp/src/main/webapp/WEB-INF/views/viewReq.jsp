@@ -14,7 +14,6 @@
 			<c:if test="${not empty message}">
 				<div id="message1" class="message1" style="color: red;">${message}</div>
 			</c:if>
-			<c:if test="${not empty role}">	
 				<c:if test="${not empty all}">
 					<input type="hidden" name="userId" id="userId" value="${id}">
 					<table id="Read" align="center">
@@ -81,8 +80,7 @@
 							</td>
 						</tr>
 					</table>
-					<input type="hidden" id="orderId" name="orderId" value=""/>
-				</c:if>
+				<input type="hidden" id="orderId" name="orderId" value=""/>
 			</c:if>
 		</form:form>
 	<%@ include file='footer.jsp'%>

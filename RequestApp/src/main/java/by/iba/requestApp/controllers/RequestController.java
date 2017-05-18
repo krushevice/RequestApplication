@@ -45,8 +45,7 @@ public class RequestController {
         System.out.println("orders = " + orders);
         model.addAttribute("orders", orders);
         model.addAttribute("id", id);
-        String role = loginDelegate.getUserRoleById(id);
-        model.addAttribute("role", role);        
+        model.addAttribute("all", "no");       
         return "viewReq";
     }
 	
@@ -57,8 +56,7 @@ public class RequestController {
         System.out.println(" viewReq orders = " + orders);
         model.addAttribute("orders", orders);
         model.addAttribute("id", id);
-        String role = loginDelegate.getUserRoleById(id);
-        model.addAttribute("role", role);
+        model.addAttribute("all", "yes");
         return "viewReq";
     }
 	
