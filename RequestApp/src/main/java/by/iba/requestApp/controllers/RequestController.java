@@ -63,6 +63,15 @@ public class RequestController {
         model.addAttribute("id", id);
 		return new ModelAndView("excelView", model);
 	}
+	
+	@RequestMapping(value = "/downloadAllExcel", method = RequestMethod.GET)
+	public ModelAndView downloadAllExcel(@RequestParam int id, ModelMap model) throws SQLException {
+        List<OrderBean> orders = orderDelegate.selectAllOrders();
+        System.out.println(" viewReq orders = " + orders);
+        model.addAttribute("orders", orders);
+        model.addAttribute("id", id);
+		return new ModelAndView("excelView", model);
+	}
 	 
 	 @RequestMapping(value = "/createReq", method=RequestMethod.POST)
 	 public ModelAndView insertOrder(@ModelAttribute("reqBean")RequestBean reqBean, BindingResult result, RedirectAttributes redirectAttributes){

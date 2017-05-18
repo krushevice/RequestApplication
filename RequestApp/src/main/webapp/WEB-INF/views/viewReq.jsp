@@ -20,7 +20,7 @@
 				<th colspan="7">That's all you've ordered<hr class="hr"></th>
 			</tr>			
 			<tr class="bg">
-				<td>Order №</td>
+				<td>№</td>
 				<td>Product</td>
         		<td>Type</td>
         		<td>Count</td>

@@ -14,8 +14,8 @@
 	</head>
 	<body>
 		<input type="hidden" name="userId" id="userId" value="${id}">
-		<div id="myHeader">
-			<div id="headerText">
+		<div id="mainHeader" align="center">
+			<div id="header" align="center">
 				  <nav>				  
 					  <input class="button" type="button" id="home" onclick="goHome();" value="Home">
 					  <input class="button" type="button" id="create" onclick="createRequest();" value="Create">

@@ -73,7 +73,7 @@ th {
 }
 
 .bg {
-	background: rgba(169, 169, 169, .15);
+	background: #FFF5F1;
 }
 
 #Greeting {
@@ -91,7 +91,7 @@ th {
 }
 
 .btn {
-	background-color: #59B2E0;
+	background-color: #58B1FF;
 	outline: none;
 	color: #fff;
 	font-size: 14px;
@@ -110,6 +110,6 @@ th {
 .btn:hover,
 .btn:focus {
 	color: #fff;
-	background-color: #53A3CD;
-	border-color: #53A3CD;
+	background-color: #4D9ADD;
+	border-color: #4D9ADD;
 }

@@ -52,7 +52,7 @@ html, body {
 	padding:10px 20px 20px 10px;
 }
 .btn {
-	background-color: #59B2E0;
+	background-color: #59B2E6;
 	outline: none;
 	color: #fff;
 	font-size: 14px;
@@ -68,8 +68,8 @@ html, body {
 .btn:hover,
 .btn:focus {
 	color: #fff;
-	background-color: #53A3CD;
-	border-color: #53A3CD;
+	background-color: #4D9ADD;
+	border-color: #4D9ADD;
 }
 #buttons {
 	margin-top:20px;
