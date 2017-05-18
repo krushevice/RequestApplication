@@ -20,6 +20,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.support.RequestContextUtils;
 import org.springframework.web.servlet.view.RedirectView;
 
+import by.iba.requestApp.delegate.LoginDelegate;
 import by.iba.requestApp.delegate.OrderDelegate;
 import by.iba.requestApp.viewBean.OrderBean;
 import by.iba.requestApp.viewBean.RequestBean;
@@ -28,7 +29,9 @@ import by.iba.requestApp.viewBean.RequestBean;
 public class RequestController {
 	
 	@Autowired  
-	private OrderDelegate orderDelegate;	
+	private OrderDelegate orderDelegate;
+	@Autowired  
+	private LoginDelegate loginDelegate;
 
 	/*@RequestMapping(value = "/viewReq", method = RequestMethod.GET)
 		public String viewRequests() {
@@ -41,7 +44,9 @@ public class RequestController {
         List<OrderBean> orders = orderDelegate.selectOrdersByUserId(id);
         System.out.println("orders = " + orders);
         model.addAttribute("orders", orders);
-        model.addAttribute("id", id);        
+        model.addAttribute("id", id);
+        String role = loginDelegate.getUserRoleById(id);
+        model.addAttribute("role", role);        
         return "viewReq";
     }
 	
@@ -52,6 +57,8 @@ public class RequestController {
         System.out.println(" viewReq orders = " + orders);
         model.addAttribute("orders", orders);
         model.addAttribute("id", id);
+        String role = loginDelegate.getUserRoleById(id);
+        model.addAttribute("role", role);
         return "viewReq";
     }
 	

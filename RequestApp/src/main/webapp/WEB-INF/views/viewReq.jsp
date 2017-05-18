@@ -14,66 +14,75 @@
 			<c:if test="${not empty message}">
 				<div id="message1" class="message1" style="color: red;">${message}</div>
 			</c:if>
-		<input type="hidden" name="userId" id="userId" value="${id}">
-		<table id="Read" align="center">
-			<tr>
-				<th colspan="7">That's all you've ordered<hr class="hr"></th>
-			</tr>			
-			<tr class="bg">
-				<td>№</td>
-				<td>Product</td>
-        		<td>Type</td>
-        		<td>Count</td>
-        		<td>Price</td>
-        		<td>Status</td>
-        		<td>Delete</td>
-       		</tr>
-			<c:forEach items="${orders}" var="order">
-                <tr class="canChoose">
-                	<td>${order.id}</td>
-                    <td>${order.product.productName}</td>
-                    <td>${order.productType.productTypeName}</td>
-                    <td>${order.count}</td>
-                    <td>${order.price} BYN</td>
-                    <td onclick="toStage('${order.id}')">
-	                    <c:choose>
-						    <c:when test="${order.status=='1'}">
-						        <span style="color:green"> Completed </span> 
-						    </c:when>    
-						    <c:otherwise>
-						        <span style="color:orange"> In progress</span>
-						    </c:otherwise>
-						</c:choose>
-					</td>
-					<td>
-						<input type="button" onclick="delOrder('${order.id}');" value="Delete"/>
-					</td>
-                </tr>
-            </c:forEach>
-			<%-- <c:forEach items="${orders}" var="order">
-                <tr class="canChoose">
-                	<td>${order.id}</td>
-                    <td>${order.name}</td>
-                    <td>${order.product_type_name}</td>
-                    <td>${order.count}</td>
-                    <td>${order.price}</td>
-                </tr>
-            </c:forEach> --%>
-			<tr class="noBorder">
-				<td colspan="7" id="simpleString" align="center">	
-					<hr class="hr">			
-					Click here to create new request or download .xls file
-				</td>
-			</tr>
-			<tr class="Buttons">
-				<td class="noBorder" colspan="7" align="center">
-					<input class="btn" type="button" id="create" onclick="createRequest();" value="Create">	
-					<input class="btn" type="button" id="download" onclick="downloadExcel();" value="Download">
-				</td>
-			</tr>
-		</table>
-		<input type="hidden" id="orderId" name="orderId" value=""/>
-	</form:form>
+			<c:if test="${not empty role}">	
+				<input type="hidden" name="userId" id="userId" value="${id}">
+				<table id="Read" align="center">
+					<tr>
+						<th colspan="7">That's all you've ordered<hr class="hr"></th>
+					</tr>			
+					<tr class="bg">
+						<td>№</td>
+						<td>Product</td>
+		        		<td>Type</td>
+		        		<td>Count</td>
+		        		<td>Price</td>
+		        		<td>Status</td>
+		        		<td>Delete</td>
+		       		</tr>
+					<c:forEach items="${orders}" var="order">
+		                <tr class="canChoose">
+		                	<td>${order.id}</td>
+		                    <td>${order.product.productName}</td>
+		                    <td>${order.productType.productTypeName}</td>
+		                    <td>${order.count}</td>
+		                    <td>${order.price} BYN</td>
+		                    <td onclick="toStage('${order.id}')">
+			                    <c:choose>
+								    <c:when test="${order.status=='1'}">
+								        <span style="color:green"> Completed </span> 
+								    </c:when>    
+								    <c:otherwise>
+								        <span style="color:orange"> In progress</span>
+								    </c:otherwise>
+								</c:choose>
+							</td>
+							<td>
+								<input type="button" onclick="delOrder('${order.id}');" value="Delete"/>
+							</td>
+		                </tr>
+		            </c:forEach>
+					<%-- <c:forEach items="${orders}" var="order">
+		                <tr class="canChoose">
+		                	<td>${order.id}</td>
+		                    <td>${order.name}</td>
+		                    <td>${order.product_type_name}</td>
+		                    <td>${order.count}</td>
+		                    <td>${order.price}</td>
+		                </tr>
+		            </c:forEach> --%>
+					<tr class="noBorder">
+						<td colspan="7" id="simpleString" align="center">	
+							<hr class="hr">			
+							Click here to create new request or download .xls file
+						</td>
+					</tr>
+					<tr class="Buttons">
+						<td class="noBorder" colspan="7" align="center">
+							<input class="btn" type="button" id="create" onclick="createRequest();" value="Create">	
+							<input class="btn" type="button" id="download" onclick="downloadExcel();" value="Download">
+							<c:choose>
+								<c:when test="${role=='admin'}">
+									<input class="btn" type="button" id="downloadAll" onclick="downloadAllExcel();" value="Download All">
+								</c:when>
+						  		<c:otherwise>
+						  		</c:otherwise>
+							</c:choose>
+						</td>
+					</tr>
+				</table>
+				<input type="hidden" id="orderId" name="orderId" value=""/>
+			</c:if>
+		</form:form>
 	<%@ include file='footer.jsp'%>
 	<script type="text/javascript">
 			function createRequest() {
@@ -81,6 +90,9 @@
 			}
 			function downloadExcel() {
 				location.href = 'downloadExcel?id=' + $("#userId").val();
+			}
+			function downloadAllExcel() {
+				location.href = 'downloadAllExcel?id=' + $("#userId").val();
 			}
 			function toStage(id) {
 				location.href = '/requestApp/orderStage?id=' + $("#userId").val() + "&orderId="+id;
