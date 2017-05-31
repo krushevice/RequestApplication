@@ -41,6 +41,6 @@ public class HomeController {
         model.addAttribute("role", role);
         model.addAttribute("id", id);
 		return "home";
-	} 
+	}  
 
 }
