@@ -23,7 +23,7 @@ import by.iba.requestApp.viewBean.LoginBean;
 public class LoginController{
 	@Autowired  
 	private LoginDelegate loginDelegate;
-	 
+	  
 	@RequestMapping(value="/login",method=RequestMethod.GET)
 	public ModelAndView displayLogin(){
 		ModelAndView model = new ModelAndView("loginB");
