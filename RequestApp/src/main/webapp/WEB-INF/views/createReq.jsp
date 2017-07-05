@@ -13,7 +13,7 @@
 	<body>
 		<form:form id="MainForm" action="createReq" name="reqBean" method="post" onsubmit="return validate()">
 			<c:if test="${not empty message}">
-				<div id="message1" class="message1" style="color: red;">${message}</div>
+				<div id="message1" class="message1" style="color: green;">${message}</div>
 			</c:if>
 		<input type="hidden" name="userId" id="userId" value="${id}">
 		<table id="Request" align="center">

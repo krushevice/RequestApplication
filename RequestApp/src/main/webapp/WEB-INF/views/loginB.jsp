@@ -45,7 +45,7 @@
 									<form id="login-form" action="login" method="post" style="display: block;" onsubmit="return validate()">
 									<%-- <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" /> --%>
 										<c:if test="${not empty message}">
-											<div id="message1" class="message1" style="color: red;">${message}</div>
+											<div id="message1" class="message1" style="color: ${color}">${message}</div>
 										</c:if>
 										
 										<div class="form-group">
@@ -77,7 +77,7 @@
 									</form>
 									<form id="register-form" action="register" method="post" style="display: none;" onsubmit="return validate()">
 										<c:if test="${not empty message}">
-											<div id="message1" class="message1" style="color: red;">${message}</div>
+											<div id="message1" class="message1" style="color: ${color}">${message}</div>
 										</c:if>
 										<div class="form-group">
 											<input type="text" name="username" id="username" tabindex="1" class="form-control" placeholder="<spring:message code="loginName"/>">

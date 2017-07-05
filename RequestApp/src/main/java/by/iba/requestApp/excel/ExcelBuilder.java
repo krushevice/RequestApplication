@@ -59,8 +59,6 @@ public class ExcelBuilder extends AbstractExcelView{
 
 		int rowCount  = 2;
 		
-		System.out.println("excelBuilder" + orders);
-		
 		for (int i = 0; i < orders.size(); i++) {
 			HSSFRow row = sheet.createRow(rowCount++);
 			OrderBean order = orders.get(i);

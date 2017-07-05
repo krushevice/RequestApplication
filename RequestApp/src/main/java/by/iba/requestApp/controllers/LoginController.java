@@ -46,6 +46,7 @@ public class LoginController{
 			}else{
 				model = new ModelAndView("loginB");
 				model.addObject("message", "Name or password is incorrect!");
+				model.addObject("color", "red");
 			}
 
 		}catch(Exception e){
@@ -62,28 +63,6 @@ public class LoginController{
 		model.addObject("loginBean", loginBean);
 		return model;
 	}
-
-	/*@RequestMapping(value="/register**",method=RequestMethod.POST)
-	public ModelAndView register(@ModelAttribute("loginBean")LoginBean loginBean){
-
-		ModelAndView model= null;
-		try{
-				boolean reg = loginDelegate.insertUser(loginBean.getUsername(), loginBean.getPassword());
-
-				if(reg){
-					model = new ModelAndView("loginB");
-					model.addObject("message", "Registration complites successfully!");
-				}else{
-					model = new ModelAndView("loginB");
-					model.addObject("message", "Registration error!");
-				}
-				
-		}catch(Exception e){
-			e.printStackTrace();
-		}
-
-		return model;
-	}*/
 	
 	@RequestMapping(value="/register**",method=RequestMethod.POST)
 	public ModelAndView register(@Valid @ModelAttribute("loginBean")LoginBean loginBean, BindingResult result){
@@ -97,9 +76,9 @@ public class LoginController{
 			    	errorStr += error.getDefaultMessage() + " ,";
 			    }
 			    errorStr=errorStr.substring(0,errorStr.length()-2);
-				System.out.println(errorStr);
 				model = new ModelAndView("loginB");
 				model.addObject("message", errorStr);
+				model.addObject("color", "red");
 				return model;
 	        }
 	        
@@ -108,9 +87,11 @@ public class LoginController{
 			if(reg){
 				model = new ModelAndView("loginB");
 				model.addObject("message", "Registration complites successfully!");
+				model.addObject("color", "green");
 			}else{
 				model = new ModelAndView("loginB");
 				model.addObject("message", "Registration error!");
+				model.addObject("color", "red");
 			}
 				
 		}catch(Exception e){

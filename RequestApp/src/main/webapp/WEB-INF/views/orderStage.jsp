@@ -36,7 +36,7 @@
 						        -
 						    </c:when>
 						    <c:when test="${stage.stageOne=='1'}">
-						        <input class="btn" type="button" name="one" id="one" onclick="pressStageOne();" value="Approve"/> 
+						        <input class="btn" type="button" name="one" id="one" onclick="pressStageOne();" value="Approve"/> <!-- if id=1 button not disabled -->
 						    </c:when>
 						    <c:when test="${stage.stageOne=='2'}">
 						        <span style="color:green"> Done </span> 
@@ -118,6 +118,13 @@
 				$("#stageThree").val("2");
 				$("#MainForm").submit();
 			}
+			$( document ).ready(function() {
+				alert($("#userId").val());
+    			if($("#userId").val()!="1"){
+    			alert("2");
+    				$(".btn").attr("disabled", true)
+    			};			
+			});
 	</script>	
 </body>
 </html>

@@ -17,8 +17,8 @@ import by.iba.requestApp.viewBean.StageBean;
 public class StageDaoImpl implements StageDao{
 	
 	@Autowired
-	private SessionFactory sessionFactory; 
-
+	private SessionFactory sessionFactory;
+	
 	@Override
 	public List<StageBean> selectOrderStages(int orderId) throws SQLException {
 		Session session = sessionFactory.getCurrentSession();
@@ -28,7 +28,6 @@ public class StageDaoImpl implements StageDao{
 		List list = query.list();
 		tx.commit();
 		session.close();
-
 		return list;
 	}
 
@@ -42,7 +41,7 @@ public class StageDaoImpl implements StageDao{
 	public void updateOrderStage(int orderId, int stage) {
 		Session session = sessionFactory.getCurrentSession();
 		Transaction tx = session.beginTransaction();
-	    session.update("StageBean" );//createQuery("from StageBean where id = :id");
+	    session.update("StageBean" );
 		tx.commit();
 		session.close();
 
@@ -52,9 +51,7 @@ public class StageDaoImpl implements StageDao{
 	public void updateOrderStage(StageBean stageBean) {
 		Session session = sessionFactory.getCurrentSession();
 		Transaction tx = session.beginTransaction();
-		System.out.println("update1");
 	    session.update(stageBean);//createQuery("from StageBean where id = :id");
-		System.out.println("update2");
 	    tx.commit();
 		session.close();
 	}
@@ -68,8 +65,7 @@ public class StageDaoImpl implements StageDao{
 		query.setParameter("id", orderId);
 		List list = query.list();
 		tx.commit();
-		session.close();
-		
+		session.close();		
 		if (list.isEmpty()){
 			return true;
 		}
@@ -85,10 +81,8 @@ public class StageDaoImpl implements StageDao{
 		query.setParameter("id", orderId);
 		int result = query.executeUpdate();
 		if(result!=1){
-			System.out.println("rollback");
 			tx.rollback();
 		}else{
-			System.out.println("commit");
 		    tx.commit();
 		}
 		session.close();

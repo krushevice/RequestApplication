@@ -22,29 +22,24 @@ public class UserDaoImpl implements UserDao {
 	private SessionFactory sessionFactory; 
 
 	public boolean isValidUser(String username, String password) throws SQLException {
-
 		boolean inTransaction = TransactionSynchronizationManager.isActualTransactionActive();
-		System.out.println("tran = " + inTransaction);
 		Session session = sessionFactory.getCurrentSession();
-	Transaction tx = session.beginTransaction();
+		Transaction tx = session.beginTransaction();
 	    Query query = session.createQuery("from LoginBean where username = :username and password = :password");
 		query.setParameter("username", username);
 		query.setParameter("password", password);
 		List list = query.list();
-		System.out.println("list = " + list);
-	tx.commit();
+		tx.commit();
 		session.close();
 		if(list.size()>0){
 			return true;
 		}
-
 		return false;
 	}
 
 	public boolean insertUser(String username, String password) throws SQLException {
-
 		Session session = sessionFactory.getCurrentSession();
-	Transaction tx = session.beginTransaction();
+		Transaction tx = session.beginTransaction();
 	    int id = lastId(session)+1;
 	    LoginBean lb = new LoginBean();
 	    if(id>0){
@@ -53,13 +48,11 @@ public class UserDaoImpl implements UserDao {
 		    lb.setPassword(password);
 		    lb.setRole("user");
 		    session.save(lb);
-	tx.commit();
+		    tx.commit();
 	    }else{
 	    	tx.rollback();
 	    }
-
-	    return true;
-		
+	    return true;		
 	}
 	
 	public int lastId(Session session) throws SQLException{
@@ -74,36 +67,32 @@ public class UserDaoImpl implements UserDao {
 
 	@Override
 	public String getUserRole(String username, String password) {
-
 		Session session = sessionFactory.getCurrentSession();
-	Transaction tx = session.beginTransaction();
+		Transaction tx = session.beginTransaction();
 	    Query query = session.createQuery("select role from LoginBean where username = :username and password = :password");
 		query.setParameter("username", username);
 		query.setParameter("password", password);
 		List list = query.list();
-	tx.commit();
+		tx.commit();
 		session.close();
 		if(list.size()>0){
 			return (String) list.get(0);
 		}
-
 		return "";
 	}
 	
 	public String getUserId(String username, String password) {
-
 		Session session = sessionFactory.getCurrentSession();
-	Transaction tx = session.beginTransaction();
+		Transaction tx = session.beginTransaction();
 	    Query query = session.createQuery("select id from LoginBean where username = :username and password = :password");
 		query.setParameter("username", username);
 		query.setParameter("password", password);
 		List list = query.list();
-	tx.commit();
+		tx.commit();
 		session.close();
 		if(list.size()>0){
 			return (String) list.get(0);
 		}
-
 		return "";
 	}
 
@@ -111,33 +100,31 @@ public class UserDaoImpl implements UserDao {
 	public String getUserRoleById(int id) {
 		Session session = sessionFactory.getCurrentSession();
 		Transaction tx = session.beginTransaction();
-		    Query query = session.createQuery("select role from LoginBean where id = :id");
-			query.setParameter("id", id);
-			List list = query.list();
+	    Query query = session.createQuery("select role from LoginBean where id = :id");
+		query.setParameter("id", id);
+		List list = query.list();
 		tx.commit();
-			session.close();
-			if(list.size()>0){
-				return (String) list.get(0);
-			}
-			return "";
+		session.close();
+		if(list.size()>0){
+			return (String) list.get(0);
+		}
+		return "";
 	}
 
 	@Override
 	public int getUserIdByName(String username, String password) {
-
-			Session session = sessionFactory.getCurrentSession();
+		Session session = sessionFactory.getCurrentSession();
 		Transaction tx = session.beginTransaction();
-		    Query query = session.createQuery("select id from LoginBean where username = :username and password = :password");
-			query.setParameter("username", username);
-			query.setParameter("password", password);
-			List list = query.list();
+	    Query query = session.createQuery("select id from LoginBean where username = :username and password = :password");
+		query.setParameter("username", username);
+		query.setParameter("password", password);
+		List list = query.list();
 		tx.commit();
-			session.close();
-			if(list.size()>0){
-				return (Integer) list.get(0);
-			}
-
-			return 0;
+		session.close();
+		if(list.size()>0){
+			return (Integer) list.get(0);
+		}
+		return 0;
 	}
 
 }

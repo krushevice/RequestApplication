@@ -30,12 +30,8 @@ public class OrderDaoImpl implements OrderDao{
 	
 	@Transactional(propagation=Propagation.REQUIRED )
 	public boolean insertOrder(RequestBean rb) {
-
-		//getCurrentSession();
 		Session session = sessionFactory.openSession();
-		
-	  Transaction tx = session.beginTransaction();
-
+	    Transaction tx = session.beginTransaction();
 		String querySQL = "select max(id) from RequestBean";
 		Query query = session.createQuery(querySQL);
 		List list = query.list();
@@ -43,15 +39,7 @@ public class OrderDaoImpl implements OrderDao{
 		if(list.size()>0){
 			id = (Integer) list.get(0) + 1;
 		}		
-	    //System.out.println("id=" + id);
 	    rb.setId(id);
-	    //Date date = new Date();
-	    /*DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-	    Date date = new Date();
-	    System.out.println(dateFormat.format(date));*/
-	    /*System.out.println("date = " + new Date(System.currentTimeMillis()));
-	    rb.setDate(new Date("2017/01/01 00:00:00"));*/
-	    
 	    Date date=new Date();
 	    SimpleDateFormat spl=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 	    String d=spl.format(date);
@@ -61,27 +49,18 @@ public class OrderDaoImpl implements OrderDao{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	    System.out.println("spl = " + spl);
-	    System.out.println("date =" + date);
-	    rb.setDate(date);
-	    
+	    rb.setDate(date);	    
 	    session.save(rb);
-
 	    StageBean st = getOrderStages(rb);
 	    session.save(st);
-	    //session.flush();
-	  tx.commit();
+	    tx.commit();
 	    session.close();
 	    return true;
 	}
 	
 	public boolean selectOrder(RequestBean rb) {
-
-		//getCurrentSession();
-		Session session = sessionFactory.openSession();
-		
-	  Transaction tx = session.beginTransaction();
-	    
+		Session session = sessionFactory.openSession();		
+	    Transaction tx = session.beginTransaction();	    
 	    int id=-1;
 		String querySQL = "select max(id) from RequestBean";
 		Query query = session.createQuery(querySQL);
@@ -89,27 +68,21 @@ public class OrderDaoImpl implements OrderDao{
 		if(list.size()>0){
 			id = (Integer) list.get(0) + 1;
 		}		
-	    //System.out.println("id=" + id);
 	    rb.setId(id);
 	    session.save(rb);
-
-	    //session.flush();
 	    tx.commit();
 	    session.close();
 	    return true;
 	}
 	
 	@Override
-	public List<OrderBean> selectAllOrders(){
-		
+	public List<OrderBean> selectAllOrders(){		
 		Session session = sessionFactory.openSession();		
-		Transaction tx = session.beginTransaction();
-		
+		Transaction tx = session.beginTransaction();		
 		List<OrderBean> requestsList = (List<OrderBean>)session.createQuery("from OrderBean").list();
         for(OrderBean s: requestsList){
-            System.out.println("Details : " + s);
+            //System.out.println("Details : " + s);
         }
-
 		tx.commit();
 		session.close();
 		return requestsList;
@@ -124,7 +97,6 @@ public class OrderDaoImpl implements OrderDao{
 
 	@Override
 	public List<OrderBean> selectOrdersByUserId(int id) {
-		System.out.println("selectOrdersByUserId");
 		Session session = sessionFactory.openSession();		
 		Transaction tx = session.beginTransaction();
 		Query query = session.createQuery("from OrderBean where user_id =:id");
@@ -162,11 +134,9 @@ public class OrderDaoImpl implements OrderDao{
 		Query query = session.createQuery("delete OrderBean where id = :id");
 		query.setParameter("id", orderId);
 		int result = query.executeUpdate();
-
 		query = session.createQuery("delete StageBean where id = :id");
 		query.setParameter("id", orderId);
-		int result2 = query.executeUpdate();
-		
+		int result2 = query.executeUpdate();		
 		if(result!=1 || result2!=1){
 			tx.rollback();
 		}else{		
@@ -174,5 +144,4 @@ public class OrderDaoImpl implements OrderDao{
 		}
 		session.close();
 	}
-
 }
