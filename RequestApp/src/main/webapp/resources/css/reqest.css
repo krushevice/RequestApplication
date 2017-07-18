@@ -84,7 +84,7 @@ th {
 	text-align:center;
 }
 .btn {
-	background-color: #59B2E0;
+	background-color: #59B2E6;
 	outline: none;
 	color: #fff;
 	font-size: 14px;
@@ -102,6 +102,6 @@ th {
 .btn:hover,
 .btn:focus {
 	color: #fff;
-	background-color: #53A3CD;
-	border-color: #53A3CD;
+	background-color: #4D9ADD;
+	border-color: #4D9ADD;
 }

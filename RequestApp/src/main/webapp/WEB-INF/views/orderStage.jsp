@@ -8,40 +8,79 @@
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<link href="<c:url value="/resources/css/viewReq.css" />" rel="stylesheet">
+
 	</head>
 	<body>
-		<form:form id="MainForm">
+		<form:form id="MainForm" action="updateStage" method="post" name="stageBean">
 			<c:if test="${not empty message}">
 				<div id="message1" class="message1" style="color: red;">${message}</div>
 			</c:if>
-		<input type="text" name="userId" id="userId" value="${id}">
-		<input type="text" name="orderId" id="orderId" value="${orderId}">
+		<input type="hidden" name="userId" id="userId" value="${id}">
+		<input type="hidden" name="orderId" id="orderId" value="${orderId}">
+		
 		<table id="Read" align="center">
-<!-- 			 <tr>
-				<th colspan="5">That's all you've ordered<hr class="hr"></th>
+			<tr>
+				<th colspan="3">Order №${orderId}<hr class="hr"></th>
 			</tr>			
 			<tr class="bg">
-				<td>Product</td>
-        		<td>Type</td>
-        		<td>Count</td>
-        		<td>Price</td>
-        		<td>Status</td>
-       		</tr> -->
+				<td>Manager</td>
+        		<td>Cook</td>
+        		<td>Director</td>
+       		</tr>
 			<c:forEach items="${stages}" var="stage">
                 <tr class="canChoose">
-                    <td>${stage.stageOne}</td>
-                    <td>${stage.stageTwo}</td>
-                    <td>${stage.stageThree}</td>
-                    <%-- <td onclick="toStage('${order.id}')">
-	                    <c:choose>
-						    <c:when test="${order.status=='1'}">
-						        Complite
-						    </c:when>    
+                    <td>
+                    	<input type="hidden" name="stageOne" id="stageOne" value="${stage.stageOne}">
+                    	<c:choose>
+						    <c:when test="${stage.stageOne=='0'}">
+						        -
+						    </c:when>
+						    <c:when test="${stage.stageOne=='1'}">
+						        <input class="btn" type="button" name="one" id="one" onclick="pressStageOne();" value="Approve"/> <!-- if id=1 button not disabled -->
+						    </c:when>
+						    <c:when test="${stage.stageOne=='2'}">
+						        <span style="color:green"> Done </span> 
+						    </c:when>   
 						    <c:otherwise>
-						        In progress
+						        Error
 						    </c:otherwise>
 						</c:choose>
-					</td> --%>
+                    </td>
+                    <td>
+                    	<input type="hidden" name="stageTwo" id="stageTwo" value="${stage.stageTwo}">
+                    	<c:choose>
+						    <c:when test="${stage.stageTwo=='0'}">
+						        -
+						    </c:when>
+						    <c:when test="${stage.stageTwo=='1'}">
+						    	
+						        <input class="btn" type="submit" name="two" id="two" onclick="pressStageTwo();" value="Approve"/> 
+						    </c:when>
+						    <c:when test="${stage.stageTwo=='2'}">
+						        <span style="color:green"> Done </span>  
+						    </c:when>   
+						    <c:otherwise>
+						        Error
+						    </c:otherwise>
+						</c:choose>
+                    </td>
+                    <td>
+                    	<input type="hidden" name="stageThree" id="stageThree" value="${stage.stageThree}">
+                    	<c:choose>
+						    <c:when test="${stage.stageThree=='0'}">
+						        -
+						    </c:when>
+						    <c:when test="${stage.stageThree=='1'}">
+						        <input class="btn" type="submit" name="three" id="three" onclick="pressStageThree();" value="Approve"/>
+						    </c:when>
+						    <c:when test="${stage.stageThree=='2'}">
+						        <span style="color:green"> Done </span>
+						    </c:when>   
+						    <c:otherwise>
+						        Error
+						    </c:otherwise>
+						</c:choose>
+                    </td>
                 </tr>
             </c:forEach>
 
@@ -57,6 +96,7 @@
 				</td>
 			</tr> --%>
 		</table>
+
 	</form:form>
 	<%@ include file='footer.jsp'%>
 	<script type="text/javascript">
@@ -66,6 +106,25 @@
 			function toStage(id) {
 				location.href = '/requestApp/orderStage?id=' + $("#userId").val() + "&orderId="+id;
 			} */
+			function pressStageOne() {
+				$("#stageOne").val("2");
+				$("#MainForm").submit();
+			}
+			function pressStageTwo() {
+				$("#stageTwo").val("2");
+				$("#MainForm").submit();
+			}
+			function pressStageThree() {
+				$("#stageThree").val("2");
+				$("#MainForm").submit();
+			}
+			$( document ).ready(function() {
+				alert($("#userId").val());
+    			if($("#userId").val()!="1"){
+    			alert("2");
+    				$(".btn").attr("disabled", true)
+    			};			
+			});
 	</script>	
 </body>
 </html>

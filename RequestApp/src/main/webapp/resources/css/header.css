@@ -1,20 +1,27 @@
-#myHeader {
-	background-color: #F0F8FF;
+#mainHeader {
+	background-color: #C7E5FF;
 	height: 50px;
+	z-index:0;
+	width: 100%;
+	text-align: center;
 }
 	
-#headerText {
+#header {
 	text-align: center;
+	position: fixed;
+	background-color: #C7E5FF;
+	z-index: 9999;
+	width: 100%;
+	
 }
 
 .button {
-	background-color: #F0F8FF;
+	background-color: #C7E5FF;
 	outline: none;
 	color: #00415d;
 	font-size: 14px;
 	height: auto;
 	width: 150px;
-	margin-bottom:20px;
 	font-weight: normal;
 	padding: 20px, 10px, 20px, 10px;
 	text-transform: uppercase;
@@ -25,6 +32,6 @@
 .button:hover,
 .button:focus {
 	color: #fff;
-	background-color: #59B2E0;
-	border-color: #59B2E0;
+	background-color: #59B2E6;
+	border-color: #59B2E6;
 }

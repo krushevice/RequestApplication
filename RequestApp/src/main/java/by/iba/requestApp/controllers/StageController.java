@@ -23,22 +23,32 @@ public class StageController {
 	private StageService stageService;
 	
 	@RequestMapping(value = "/orderStage", method = RequestMethod.GET)
-	public ModelAndView orderStage(@RequestParam int id, @RequestParam int orderId, @ModelAttribute("stageBean")StageBean stageBean) {
-        
+	public ModelAndView orderStage(@RequestParam int id, @RequestParam int orderId) {        
         List<StageBean> stages = null;
 		try {
 			stages = stageService.selectOrderStages(orderId);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
-        System.out.println("stages = " + stages);
-		
-		ModelAndView model = new ModelAndView("orderStage", "stageBean", stages);
-
+		}		
+		ModelAndView model = new ModelAndView("orderStage", "stages", stages);
 		model.addObject("id", id);
-		model.addObject("iorderId", orderId);
-		
+		model.addObject("orderId", orderId);		
         return model;
+	}
+	
+	@RequestMapping(value="/updateStage", method=RequestMethod.POST)
+	public String executeStage(@ModelAttribute("stageBean")StageBean stageBean, int userId){
+		try{
+			stageService.updateOrderStage(stageBean);
+			boolean isComplete = stageService.isComplete(stageBean.getOrderId());
+			if(isComplete){
+				stageService.finishOrder(stageBean.getOrderId());
+				return "redirect:viewAllReq?id="+userId;
+			}
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return "redirect:orderStage?id="+userId+"&orderId="+stageBean.getOrderId();
 	}
 }

@@ -16,4 +16,6 @@ public interface OrderService {
 	public List<OrderBean> selectOrdersByUserId(int id);
 
 	public boolean insertOrderStages(RequestBean rb);
+
+	public void deleteOrder(int orderId);
 }

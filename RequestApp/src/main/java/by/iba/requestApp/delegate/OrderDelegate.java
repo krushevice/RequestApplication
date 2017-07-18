@@ -35,4 +35,8 @@ public class OrderDelegate {
 	public boolean insertOrderStages(RequestBean rb) {
 		return orderService.insertOrderStages(rb);
 	}
+	
+	public void deleteOrder(int orderId){
+		orderService.deleteOrder(orderId);
+	}
 }

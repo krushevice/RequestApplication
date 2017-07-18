@@ -22,6 +22,7 @@ public class OrderServiceImpl implements OrderService{
 		return orderDao.insertOrder(rb);	
 	}
 	
+	@Override
 	public List<OrderBean> selectAllOrders() throws SQLException {
 		return orderDao.selectAllOrders();
 	}
@@ -34,5 +35,10 @@ public class OrderServiceImpl implements OrderService{
 	@Override
 	public boolean insertOrderStages(RequestBean rb) {
 		return orderDao.insertOrderStages(rb);
+	}
+
+	@Override
+	public void deleteOrder(int orderId) {
+		orderDao.deleteOrder(orderId);
 	}
 }
