@@ -16,12 +16,12 @@ public class StageServiceImpl implements StageService{
 	private StageDao stageDao;
 
 	@Override
-	public List<StageBean> selectOrderStages(int orderId) throws SQLException {
+	public List<StageBean> selectOrderStages(int orderId){
 		return stageDao.selectOrderStages(orderId);
 	}
 
 	@Override
-	public List<StageBean> selectAllOrdersStages() throws SQLException {
+	public List<StageBean> selectAllOrdersStages(){
 		return stageDao.selectAllOrdersStages();
 	}
 

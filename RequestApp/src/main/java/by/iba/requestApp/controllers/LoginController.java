@@ -34,23 +34,18 @@ public class LoginController{
 	@RequestMapping(value="/login**",method=RequestMethod.POST)
 	public ModelAndView executeLogin(@ModelAttribute("loginBean")LoginBean loginBean){
 		ModelAndView model= null;
-		try{
-			boolean isValidUser = loginDelegate.isValidUser(loginBean.getUsername(), loginBean.getPassword());
-			if(isValidUser){
-				int id = loginDelegate.getUserIdByName(loginBean.getUsername(), loginBean.getPassword());
-				String role = loginDelegate.getUserRoleById(id);
-				model = new ModelAndView("home");
-				model.addObject("username", loginBean.getUsername());
-				model.addObject("role", role);
-				model.addObject("id", id);
-			}else{
-				model = new ModelAndView("loginB");
-				model.addObject("message", "Name or password is incorrect!");
-				model.addObject("color", "red");
-			}
-
-		}catch(Exception e){
-			e.printStackTrace();
+		boolean isValidUser = loginDelegate.isValidUser(loginBean.getUsername(), loginBean.getPassword());
+		if(isValidUser){
+			int id = loginDelegate.getUserIdByName(loginBean.getUsername(), loginBean.getPassword());
+			String role = loginDelegate.getUserRoleById(id);
+			model = new ModelAndView("home");
+			model.addObject("username", loginBean.getUsername());
+			model.addObject("role", role);
+			model.addObject("id", id);
+		}else{
+			model = new ModelAndView("loginB");
+			model.addObject("message", "Name or password is incorrect!");
+			model.addObject("color", "red");
 		}
 
 		return model;
@@ -67,35 +62,30 @@ public class LoginController{
 	@RequestMapping(value="/register**",method=RequestMethod.POST)
 	public ModelAndView register(@Valid @ModelAttribute("loginBean")LoginBean loginBean, BindingResult result){
 
-		ModelAndView model= null;
-		try{			
-			if (result.hasErrors()) {
-				List<FieldError> errors = result.getFieldErrors();
-				String errorStr = "";
-			    for (FieldError error : errors ) {
-			    	errorStr += error.getDefaultMessage() + " ,";
-			    }
-			    errorStr=errorStr.substring(0,errorStr.length()-2);
-				model = new ModelAndView("loginB");
-				model.addObject("message", errorStr);
-				model.addObject("color", "red");
-				return model;
-	        }
-	        
-			boolean reg = loginDelegate.insertUser(loginBean.getUsername(), loginBean.getPassword());
+		ModelAndView model= null;		
+		if (result.hasErrors()) {
+			List<FieldError> errors = result.getFieldErrors();
+			String errorStr = "";
+		    for (FieldError error : errors ) {
+		    	errorStr += error.getDefaultMessage() + " ,";
+		    }
+		    errorStr=errorStr.substring(0,errorStr.length()-2);
+			model = new ModelAndView("loginB");
+			model.addObject("message", errorStr);
+			model.addObject("color", "red");
+			return model;
+        }
+        
+		boolean reg = loginDelegate.insertUser(loginBean.getUsername(), loginBean.getPassword());
 
-			if(reg){
-				model = new ModelAndView("loginB");
-				model.addObject("message", "Registration complites successfully!");
-				model.addObject("color", "green");
-			}else{
-				model = new ModelAndView("loginB");
-				model.addObject("message", "Registration error!");
-				model.addObject("color", "red");
-			}
-				
-		}catch(Exception e){
-			e.printStackTrace();
+		if(reg){
+			model = new ModelAndView("loginB");
+			model.addObject("message", "Registration complites successfully!");
+			model.addObject("color", "green");
+		}else{
+			model = new ModelAndView("loginB");
+			model.addObject("message", "Registration error!");
+			model.addObject("color", "red");
 		}
 
 		return model;

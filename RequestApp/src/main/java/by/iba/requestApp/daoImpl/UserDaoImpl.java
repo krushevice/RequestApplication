@@ -21,7 +21,7 @@ public class UserDaoImpl implements UserDao {
 	@Autowired
 	private SessionFactory sessionFactory; 
 
-	public boolean isValidUser(String username, String password) throws SQLException {
+	public boolean isValidUser(String username, String password){
 		boolean inTransaction = TransactionSynchronizationManager.isActualTransactionActive();
 		Session session = sessionFactory.getCurrentSession();
 		Transaction tx = session.beginTransaction();
@@ -37,7 +37,7 @@ public class UserDaoImpl implements UserDao {
 		return false;
 	}
 
-	public boolean insertUser(String username, String password) throws SQLException {
+	public boolean insertUser(String username, String password){
 		Session session = sessionFactory.getCurrentSession();
 		Transaction tx = session.beginTransaction();
 	    int id = lastId(session)+1;
@@ -55,7 +55,7 @@ public class UserDaoImpl implements UserDao {
 	    return true;		
 	}
 	
-	public int lastId(Session session) throws SQLException{
+	public int lastId(Session session){
 		String querySQL = "select max(id) from LoginBean";
 		Query query = session.createQuery(querySQL);
 		List list = query.list();

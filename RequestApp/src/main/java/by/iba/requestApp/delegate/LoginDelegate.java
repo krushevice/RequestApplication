@@ -12,19 +12,19 @@ public class LoginDelegate {
 	@Autowired
 	private UserService userService;
 
-	public boolean isValidUser(String username, String password) throws SQLException {
+	public boolean isValidUser(String username, String password) {
 		return userService.isValidUser(username, password);
 	}
 	
-	public boolean insertUser(String username, String password) throws SQLException {
+	public boolean insertUser(String username, String password){
 		return userService.insertUser(username, password);
 	}
 	
-	public String getUserRole(String username, String password) throws SQLException {
+	public String getUserRole(String username, String password){
 		return userService.getUserRole(username, password);
 	}
 	
-	public String getUserRoleById(int id) throws SQLException {
+	public String getUserRoleById(int id){
 		return userService.getUserRoleById(id);
 	}
 

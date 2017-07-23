@@ -18,12 +18,12 @@ public class OrderServiceImpl implements OrderService{
 	private OrderDao orderDao;
 
 	@Override
-	public boolean insertOrder(RequestBean rb) throws SQLException {
+	public boolean insertOrder(RequestBean rb){
 		return orderDao.insertOrder(rb);	
 	}
 	
 	@Override
-	public List<OrderBean> selectAllOrders() throws SQLException {
+	public List<OrderBean> selectAllOrders(){
 		return orderDao.selectAllOrders();
 	}
 

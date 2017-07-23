@@ -20,7 +20,7 @@ public class StageDaoImpl implements StageDao{
 	private SessionFactory sessionFactory;
 	
 	@Override
-	public List<StageBean> selectOrderStages(int orderId) throws SQLException {
+	public List<StageBean> selectOrderStages(int orderId){
 		Session session = sessionFactory.getCurrentSession();
 		Transaction tx = session.beginTransaction();
 	    Query query = session.createQuery("from StageBean where id = :id");
@@ -32,7 +32,7 @@ public class StageDaoImpl implements StageDao{
 	}
 
 	@Override
-	public List<StageBean> selectAllOrdersStages() throws SQLException {
+	public List<StageBean> selectAllOrdersStages(){
 		// TODO Auto-generated method stub
 		return null;
 	}

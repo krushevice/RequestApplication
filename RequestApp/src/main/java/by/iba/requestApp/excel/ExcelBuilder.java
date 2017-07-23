@@ -23,7 +23,7 @@ public class ExcelBuilder extends AbstractExcelView{
 
 	@Override
 	protected void buildExcelDocument(Map<String, Object> model, HSSFWorkbook workbook, HttpServletRequest request,
-			HttpServletResponse response) throws Exception {
+			HttpServletResponse response){
 		List<OrderBean> orders = (List<OrderBean>) model.get("orders");
 		HSSFSheet sheet = workbook.createSheet("Orders");
 		CellStyle style = workbook.createCellStyle();

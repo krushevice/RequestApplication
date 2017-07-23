@@ -16,15 +16,15 @@ public class OrderDelegate {
 	@Autowired
 	private OrderService orderService;
 	
-	public boolean insertOrder(RequestBean rb) throws SQLException {
+	public boolean insertOrder(RequestBean rb){
 		return orderService.insertOrder(rb);
 	}
 	
-	public List<OrderBean> selectAllOrders() throws SQLException {
+	public List<OrderBean> selectAllOrders(){
 		return orderService.selectAllOrders();
 	}
 	/*
-	public boolean selectAllOrders() throws SQLException {
+	public boolean selectAllOrders(){
 		return orderService.selectAllOrders();
 	}*/
 

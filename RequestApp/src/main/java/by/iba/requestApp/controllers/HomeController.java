@@ -32,12 +32,7 @@ public class HomeController {
 	@RequestMapping(value = "/home", method = RequestMethod.GET)
 	public String gohome(@RequestParam int id, ModelMap model) {
 		String role = "";
-		try {
-			role = loginDelegate.getUserRoleById(id);
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		role = loginDelegate.getUserRoleById(id);
         model.addAttribute("role", role);
         model.addAttribute("id", id);
 		return "home";

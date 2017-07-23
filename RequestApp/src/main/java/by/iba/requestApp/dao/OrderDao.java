@@ -9,9 +9,9 @@ import by.iba.requestApp.viewBean.StageBean;
 
 public interface OrderDao {
 
-	public boolean insertOrder(RequestBean rb) throws SQLException;
+	public boolean insertOrder(RequestBean rb);
 	
-	public List<OrderBean> selectAllOrders() throws SQLException;
+	public List<OrderBean> selectAllOrders();
 
 	public List<OrderBean> selectOrdersByUserId(int id);
 

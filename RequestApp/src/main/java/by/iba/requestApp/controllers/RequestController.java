@@ -34,7 +34,7 @@ public class RequestController {
 	private LoginDelegate loginDelegate;
 
 	@RequestMapping(value = { "/viewReq" }, method = RequestMethod.GET)    
-	public String ordersOneUser(@RequestParam int id, ModelMap model) throws SQLException { 
+	public String ordersOneUser(@RequestParam int id, ModelMap model){ 
         List<OrderBean> orders = orderDelegate.selectOrdersByUserId(id);
         model.addAttribute("orders", orders);
         model.addAttribute("id", id);
@@ -43,7 +43,7 @@ public class RequestController {
     }
 	
 	@RequestMapping(value = { "/viewAllReq" }, method = RequestMethod.GET)    
-	public String ordersAll(@RequestParam int id, ModelMap model) throws SQLException {
+	public String ordersAll(@RequestParam int id, ModelMap model){
         List<OrderBean> orders = orderDelegate.selectAllOrders();
         model.addAttribute("orders", orders);
         model.addAttribute("id", id);
@@ -60,7 +60,7 @@ public class RequestController {
 	}
 	
 	@RequestMapping(value = "/downloadAllExcel", method = RequestMethod.GET)
-	public ModelAndView downloadAllExcel(@RequestParam int id, ModelMap model) throws SQLException {
+	public ModelAndView downloadAllExcel(@RequestParam int id, ModelMap model){
         List<OrderBean> orders = orderDelegate.selectAllOrders();
         model.addAttribute("orders", orders);
         model.addAttribute("id", id);
@@ -80,11 +80,8 @@ public class RequestController {
 			 model.setViewName("createReqTest");
 			 redirectAttributes.addAttribute("message", "Sorry, something went wrong!");
 		 }
-		 try {
-			 boolean reg = orderDelegate.insertOrder(reqBean);
-		 } catch (SQLException e) {
-			 e.printStackTrace();
-		 }
+		 boolean reg = orderDelegate.insertOrder(reqBean);
+
 		 return model;
 	 }
 	 

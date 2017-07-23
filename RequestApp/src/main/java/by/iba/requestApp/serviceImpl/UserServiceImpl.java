@@ -15,11 +15,11 @@ public class UserServiceImpl implements UserService {
 	@Autowired
 	private UserDao userDao;
 	@Transactional
-	public boolean isValidUser(String username, String password) throws SQLException {
+	public boolean isValidUser(String username, String password){
 		return userDao.isValidUser(username, password);
 	}
 	@Transactional
-	public boolean insertUser(String username, String password) throws SQLException {
+	public boolean insertUser(String username, String password){
 		return userDao.insertUser(username, password);	
 	}
 	@Override

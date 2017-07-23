@@ -43,12 +43,9 @@ public class OrderDaoImpl implements OrderDao{
 	    Date date=new Date();
 	    SimpleDateFormat spl=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 	    String d=spl.format(date);
-	    try {
-			date=spl.parse(d);
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+
+		//date=spl.parse(d);
+
 	    rb.setDate(date);	    
 	    session.save(rb);
 	    StageBean st = getOrderStages(rb);
